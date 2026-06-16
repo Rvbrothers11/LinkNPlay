@@ -38,7 +38,7 @@
                 <div class="action-card host-card">
                     <h3>Host Match</h3>
                     <p class="card-desc">Generate a code and invite a friend.</p>
-                    <button class="btn btn-primary" onClick="createRoom()">Generate Room Code</button>
+                    <button class="btn btn-primary" onclick="createRoom()">Generate Room Code</button>
                 </div>
 
                 <div class="divider">
@@ -50,11 +50,20 @@
                     <p class="card-desc">Enter your friend's 4-letter room code.</p>
                     <div class="input-group">
                         <input type="text" id="roomCodeInput" placeholder="CODE" maxlength="4">
-                        <button class="btn btn-secondary" onClick="joinRoom()">Connect</button>
+                        <button class="btn btn-secondary" onclick="joinRoom()">Connect</button>
                     </div>
                 </div>
             </div>
         </section>
+
+        <section id="active-game" class="glass-panel" style="display: none;">
+            <div class="room-status">
+                <h2>Room Code: <span id="displayRoomCode" class="neon-text">----</span></h2>
+                <p>Waiting for opponent to connect...</p>
+                <button class="btn btn-danger" onclick="disconnect()">Cancel & Disconnect</button>
+            </div>
+        </section>
+
         
     </main>
 
