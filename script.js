@@ -11,3 +11,6 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("playerName").innerText = username;
 });
 
+function createRoom() {
+    socket.emit('createRoom');
+}
