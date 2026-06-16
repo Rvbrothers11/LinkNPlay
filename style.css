@@ -278,3 +278,15 @@ input[tupe="text"]:focus {
 .btn-secondary:hover {
     box-shadow: 0 8px 25px rgba(139, 92, 246, 0.6);
 }
+
+.btn-danger {
+    background: rgba(239, 68, 68, 0.1);
+    color: var(--danger);
+    border: 1px solid var(--danger);
+    margin-top: 25px;
+}
+
+.btn-danger:hover {
+    background: var(--danger); color: white;
+}
+
