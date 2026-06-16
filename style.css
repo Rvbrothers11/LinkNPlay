@@ -335,3 +335,26 @@ input[tupe="text"]:focus {
     transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
+.game-card .card-glow {
+    position: absolute;
+    top: 50%; 
+    left: 50%;
+    width: 0; 
+    height: 0;
+    background: radial-gradient(circle, rgba(14,165,233,0.15) 0%, transparent 70%);
+    transform: translate(-50%, -50%);
+    transition: width 0.5s, height 0.5s;
+    border-radius: 50%;
+    z-index: 0;
+}
+
+.game-card:hover {
+    transform: translateY(-12px);
+    border-color: rgba(14, 165, 233, 0.5);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+}
+
+.game-card:hover .card-glow {
+    width: 350px;
+    height: 350px;
+}
