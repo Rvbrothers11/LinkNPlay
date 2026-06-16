@@ -14,3 +14,21 @@ document.addEventListener("DOMContentLoaded", () => {
 function createRoom() {
     socket.emit('createRoom');
 }
+
+function joinRoom() {
+    const code = document.getElementById('roomCodeInput').value.toUppercase();
+
+    if (code.length ===4) {
+        socket.emit('joinRoom', code);
+    } else {
+        alert("Please enter a 4-letter code.")
+    }
+}
+
+function disconnect() {
+    window.location.reload();
+}
+
+function selectGame(gameName) {
+    alert("You clicked" + gameName + "! We will build this arena next.");
+}
