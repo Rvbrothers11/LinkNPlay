@@ -303,3 +303,14 @@ input[tupe="text"]:focus {
     background: var(--danger); color: white;
 }
 
+.section-title {
+    margin-bottom: 30px;
+    text-align: left;
+}
+
+.section-title h2 {
+    font-size: 2rem;
+    border-left: 5px solid var(--primary);
+    padding-left: 15px;
+    font-weight: 800;
+}
