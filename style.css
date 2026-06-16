@@ -17,3 +17,11 @@
     font-family: 'Outfit', sans-serif;
 }
 
+body {
+    background-color: var(--bg-color);
+    color: var(--text-main);
+    min-height: 100vh;
+    overflow-x: hidden;
+    position: relative;
+}
+
