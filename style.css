@@ -1,0 +1,19 @@
+:root {
+    --bg-color: #0b1120;
+    --surface: rgba(30, 41, 59, 0.6);
+    --primary: #0ea5e9;
+    --primary-hover: #0284c7;
+    --secondary: #8b5cf6;
+    --secondary-hover: #7c3aed;
+    --danger: #ef4444;
+    --text-main: #f8fafc;
+    --text-muted: #94a3b8;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Outfit', sans-serif;
+}
+
