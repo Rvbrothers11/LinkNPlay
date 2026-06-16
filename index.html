@@ -28,6 +28,35 @@
         </div>
     </header>
 
-    
+    <main class="container">
+        <section id="lobby" class="glass-panel">
+            <div class="panel-header">
+                <h2>Start Playing</h2>
+                <p>Create a room or join a friend to begin your match.</p>
+            </div>
+            <div class="action-cards">
+                <div class="action-card host-card">
+                    <h3>Host Match</h3>
+                    <p class="card-desc">Generate a code and invite a friend.</p>
+                    <button class="btn btn-primary" onClick="createRoom()">Generate Room Code</button>
+                </div>
+
+                <div class="divider">
+                    <span>VS</span>
+                </div>
+
+                <div class="action-card" join-card>
+                    <h3>Join Match</h3>
+                    <p class="card-desc">Enter your friend's 4-letter room code.</p>
+                    <div class="input-group">
+                        <input type="text" id="roomCodeInput" placeholder="CODE" maxlength="4">
+                        <button class="btn btn-secondary" onClick="joinRoom()">Connect</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+    </main>
+
 </body>
 </html>
