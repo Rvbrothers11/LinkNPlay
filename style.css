@@ -70,3 +70,20 @@ body {
     top: 0;
     z-index: 100;
 }
+
+.logo {
+    font-size: 2.2rem;
+    font-weight: 800;
+    letter-spacing: -1px;
+}
+
+.gradient-text {
+    background: linear-gradient(to right, #0ea5e9, #8b5cf6);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+}
+
+.white-text {
+    color: white;
+}
