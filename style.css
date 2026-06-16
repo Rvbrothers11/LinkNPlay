@@ -208,7 +208,20 @@ body {
     justify-content: center;
     align-items: center;
     align-self: center;
-    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 50%;
+
+    background: linear-gradient(#1e293b, #1e293b) padding-box,
+                linear-gradient(135deg, var(--primary), var(--secondary)) border-box;
+
+    border: 2px solid transparent;
+
+    box-shadow: 0 0 20px rgba(14, 165, 233, 0.2);
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0.4);
+    transition: transform 0.3s ease;
+}
+
+.divider:hover {
+    transform: scale(1.1);
 }
 
 .input-group {
