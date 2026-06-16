@@ -269,3 +269,12 @@ input[tupe="text"]:focus {
     box-shadow: 0 8px 25px rgba(14, 165, 233, 0.6);
 }
 
+.btn-secondary {
+    background: linear-gradient(135deg, var(--secondary), var(--secondary-hover));
+    color: white;
+    box-shadow: 0 4px 15px rgba(139, 92, 246, 0.4);
+}
+
+.btn-secondary:hover {
+    box-shadow: 0 8px 25px rgba(139, 92, 246, 0.6);
+}
