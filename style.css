@@ -91,10 +91,42 @@ body {
 .user-profile {
     display: flex;
     align-items: center;
-    gap: 15px;
+    gap: 12px; 
     background: rgba(255, 255, 255, 0.05);
-    padding: 10px 20px;
-    border-radius: 30px;
+    padding: 10px 24px;
+    border-radius: 50px; 
     border: 1px solid rgba(255, 255, 255, 0.1);
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+
+.avatar { 
+    font-size: 1.8rem; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.user-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start; 
+    gap: 4px; 
+}
+
+#playerName {
+    font-weight: 700;
+    font-size: 1.1rem;
+    line-height: 1; 
+    color: var(--text-main);
+}
+
+.score-badge {
+    font-size: 0.9rem;
+    color: #fbbf24;
+    font-weight: 800;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    gap: 6px;
 }
