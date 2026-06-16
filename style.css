@@ -358,3 +358,37 @@ input[tupe="text"]:focus {
     width: 350px;
     height: 350px;
 }
+
+.game-card .icon {
+    font-size: 4rem;
+    margin-bottom: 20px;
+    position: relative;
+    z-index: 1;
+    filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.3));
+    transition: transform 0.3s;
+}
+
+.game-card:hover .icon {
+    transform: scale(1.1);
+}
+
+.game-card h3 {
+    font-size: 1.6rem;
+    margin-bottom: 10px;
+    position: relative;
+    z-index: 1;
+    font-weight: 600;
+}
+
+.game-card p {
+    color: var(--text-muted);
+    font-size: 1rem;
+    position: relative;
+    z-index: 1;
+}
+
+.neon-text {
+    color: var(--primary);
+    text-shadow: 0 0 15px rgba(14, 165, 233, 0.6;
+    letter-spacing: 4px;
+}
