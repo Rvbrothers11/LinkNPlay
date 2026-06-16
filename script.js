@@ -32,3 +32,29 @@ function disconnect() {
 function selectGame(gameName) {
     alert("You clicked" + gameName + "! We will build this arena next.");
 }
+
+socket.on('roomCreated', (roomCode) => {
+    document.getElementById('lobby').style.display = 'none';
+    document.getElementById('active-game').style.display = 'block';
+    document.getElementById('displayRoomCode').innerText = roomCode;
+});
+
+socket.on('roomJoined', (roomCode) => {
+    document.getElementById('lobby').style.display = 'none';
+    document.getElementById('active-game').style.display = 'block';
+    document.getElementById('displayRoomCode').innerText = roomCode;
+});
+
+socket.on('startGame', (roomCode) => {
+    const statusText = document.querySelector('.room-status p');
+    statusText.innerText = "Opponent connected! Game starting...";
+    statusText.style.color = "#2ecc71";
+
+    setTimeout(() => {
+        alert("Boom! Both players are connected in room " + roomCode + "!");
+    }, 500);
+});
+
+socket.on('error', (message) => {
+    alert(message);
+});
