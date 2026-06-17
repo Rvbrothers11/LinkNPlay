@@ -175,3 +175,23 @@ socket.on('syncGameTransition', (gameName) => {
         animateHeroTransition(targetCard, gameName);
     }
 });
+
+function makeMove(index) {
+    if (!isMyTurn || boardState[index] !== "") return;
+
+    boardState[index] = mySymbol;
+    const cell = document.getElementById(`cell-${index}`);
+    cell.innerText = mySymbol;
+    cell.classList.add(mySymbol === "X" ? "x-symbol" : "o-symbol");
+
+    isMyTurn = false;
+    document.getElementById('turnIndicator').innerText = "Opponent's Turn...";
+
+    socket.emit('playMove', {
+        room: currentRoom,
+        index: index,
+        symbol: mySymbol
+    });
+
+    checkWin(mySymbol);
+}
