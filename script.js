@@ -127,7 +127,10 @@ socket.on('opponentLeft', () => {
 
 function resetToLobby(message) {
     document.getElementById('active-game').style.display = 'none';
+    document.getElementById('tictactoe-arena').style.display = 'block';
     document.getElementById('lobby').style.display = 'block';
+    document.querySelector('.game-grid').style.display = 'grid';
+    document.querySelector('.section-title').style.display = 'block';
 
     const statusText = document.querySelector('.room-status p');
     statusText.innerText = "Waiting for opponent to connect...";
