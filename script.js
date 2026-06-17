@@ -36,6 +36,9 @@ function joinRoom() {
 }
 
 function selectGame(gameName, event) {
+
+
+    
     const card = event.currentTarget;
     const rect = card.getBoundingClientRect();
     const clone = card.cloneNode(true);
