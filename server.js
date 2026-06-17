@@ -33,4 +33,13 @@ io.on('connection', (socket) => {
             socket.emit('error', 'Room is full or does not exist.');
         }
     });
-})
+
+    socket.on('disconnect', () => {
+        console.log('User disconnected:', socket.id);
+    });
+});
+
+const PORT = process.env.PORT || 3000;
+server.listen(PORT, () => {
+    console.log(`Server is running on http://localhost:${PORT}`);
+});
