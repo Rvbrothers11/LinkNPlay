@@ -73,16 +73,22 @@ function animateHeroTransition(cardElement, gameName) {
         clone.querySelector('p').style.opacity = '0';
         clone.querySelector('.icon').style.opacity = '0';
     });
-}
-    
-
-    
 
     setTimeout(() => {
-        window.location.href = gameName + ".html";
+        document.getElementById('lobby').style.display = 'none';
+        document.querySelector('.game-grid').style.display = 'none';
+        document.querySelector('.section-title').style.display = 'none';
+        document.getElementById('active-game').style.display = 'none';
+
+        if (gameName === 'tictactoe') {
+            document.getElementById('tictactoe-arena').style.display = 'block';
+        }
+
+        clone.style.opacity = '0';
+        setTimeout(() => clone.remove(), 600);
     }, 600);
-
-
+}
+    
 socket.on('roomCreated', (roomCode) => {
     document.getElementById('lobby').style.display = 'none';
     document.getElementById('active-game').style.display = 'block';
