@@ -45,12 +45,16 @@ function selectGame(gameName, event) {
     socket.emit('triggerGame', { room: roomCode, game: gameName});
     animateHeroTransition(event.currentTarget, gameName);
 }
+
+function animateHeroTransition(cardElement, gameName) {
+    const rect = cardElement.getBoundingClientRect();
+    const clone = cardElement.cloneNode(true);
+
     clone.style.position = 'fixed';
     clone.style.top = rect.top + 'px';
     clone.style.left = rect.left + 'px';
     clone.style.width = rect.width + 'px';
     clone.style.height = rect.height + 'px';
-
     clone.style.margin = '0';
     clone.style.zIndex = '9999';
     clone.style.transition = 'all 0.6s cubic-bezier(0.25, 1, 0.5, 1)';
@@ -69,6 +73,10 @@ function selectGame(gameName, event) {
         clone.querySelector('p').style.opacity = '0';
         clone.querySelector('.icon').style.opacity = '0';
     });
+}
+    
+
+    
 
     setTimeout(() => {
         window.location.href = gameName + ".html";
