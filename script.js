@@ -81,7 +81,7 @@ function animateHeroTransition(cardElement, gameName) {
         document.getElementById('active-game').style.display = 'none';
 
         if (gameName === 'tictactoe') {
-            document.getElementById('tictactoe-arena').style.display = 'none';
+            document.getElementById('tictactoe-arena').style.display = 'block';
         }
 
         clone.style.opacity = '0';
@@ -127,7 +127,7 @@ socket.on('opponentLeft', () => {
 
 function resetToLobby(message) {
     document.getElementById('active-game').style.display = 'none';
-    document.getElementById('tictactoe-arena').style.display = 'block';
+    document.getElementById('tictactoe-arena').style.display = 'none';
     document.getElementById('lobby').style.display = 'block';
     document.querySelector('.game-grid').style.display = 'grid';
     document.querySelector('.section-title').style.display = 'block';
