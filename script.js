@@ -243,3 +243,22 @@ function checkWin(lastSymbol) {
         setTimeout(resetBoard, 3000);
     }
 }
+
+function resetBoard() {
+    boardState = ["", "", "", "", "", "", "", "", ""];
+    for (let i = 0; i < 9; i++) {
+        const cell = document.getElementById(`cell-${i}`);
+        cell.innerText = "";
+        cell.classList.remove("x-remove", "o-symbol");
+    }
+
+    if (mySymbol === "X") {
+        isMyTurn = true;
+        document.getElementById('turnIndicator').innerText = "Your Turn! (X)";
+    }
+    else {
+        isMyTurn = false;
+        document.getElementById('turnIndicator').innerText = "Opponent's Turn...";
+    }
+    document.getElementById('turnIndicator').style.color = "var(--text-muted)";
+}
