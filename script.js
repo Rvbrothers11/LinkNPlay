@@ -142,3 +142,18 @@ function resetToLobby(message) {
         alert(message);
     }, 100);
 }
+
+socket.on('syncGameTransition', (gameName) => {
+    const allCards = document.querySelectorAll('.game-card');
+    let targetCard = null;
+
+    allCards.forEach(card => {
+        if (card.getAttribute('onclick').includes(gameName)) {
+            targetCard = card;
+        }
+    });
+
+    if (targetCard) {
+        animateHeroTransition(targetCard, gameName);
+    }
+});
