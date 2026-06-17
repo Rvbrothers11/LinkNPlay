@@ -35,8 +35,21 @@ function joinRoom() {
     }
 }
 
-function selectGame(gameName) {
-    alert("You clicked " + gameName + "! We will build this arena next.");
+function selectGame(gameName, event) {
+    const card = event.currentTarget;
+    const rect = card.getBoundingClientRect();
+    const clone = card.cloneNode(true);
+
+    clone.style.position = 'fixed';
+    clone.style.top = rect.top + 'px';
+    clone.style.left = rect.left + 'px';
+    clone.style.width = rect.width + 'px';
+    clone.style.height = rect.height + 'px';
+
+    clone.style.margin = '0';
+    clone.style.zIndex = '9999';
+    clone.style.transition = 'all 0.6s cubic-bezier(0.25, 1, 0.5, 1)';
+    clone.style.cursor = 'default';
 }
 
 socket.on('roomCreated', (roomCode) => {
