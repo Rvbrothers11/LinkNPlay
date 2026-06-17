@@ -101,12 +101,19 @@ function animateHeroTransition(cardElement, gameName) {
 }
     
 socket.on('roomCreated', (roomCode) => {
+    currentRoom = roomCode;
+    mySymbol = "X";
+    isMyTurn = true;
+
     document.getElementById('lobby').style.display = 'none';
     document.getElementById('active-game').style.display = 'block';
     document.getElementById('displayRoomCode').innerText = roomCode;
 });
 
 socket.on('roomJoined', (roomCode) => {
+    currentRoom = roomCode;
+    mySymbol = "0";
+    isMyTurn = false;
     document.getElementById('lobby').style.display = 'none';
     document.getElementById('active-game').style.display = 'block';
     document.getElementById('displayRoomCode').innerText = roomCode;
