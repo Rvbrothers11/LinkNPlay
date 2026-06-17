@@ -456,7 +456,7 @@ input[tupe="text"]:focus {
 }
 
 .cell {
-    width: 10px;
+    width: 100px;
     height: 100px;
     background: rgba(0, 0, 0, 0.3);
     border: 2px solid rgba(255, 255, 255, 0.1);
