@@ -58,3 +58,9 @@ socket.on('startGame', (roomCode) => {
 socket.on('error', (message) => {
     alert(message);
 });
+
+socket.on('opponentLeft', () => {
+    alert("Your opponent disconnected!");
+
+    window.location.reload();
+});
