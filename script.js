@@ -36,13 +36,15 @@ function joinRoom() {
 }
 
 function selectGame(gameName, event) {
+    const roomCode = document.getElementById('displayRoomCode').innerText;
+    if (roomCode === "----" || document.getElementById('active-game').style.display === 'none') {
+        alert("Sorry. You need to connect with a friend in the lobby first!");
+        return;
+    }
 
-
-    
-    const card = event.currentTarget;
-    const rect = card.getBoundingClientRect();
-    const clone = card.cloneNode(true);
-
+    socket.emit('triggerGame', { room: roomCode, game: gameName});
+    animateHeroTransition(event.currentTarget, gameName);
+}
     clone.style.position = 'fixed';
     clone.style.top = rect.top + 'px';
     clone.style.left = rect.left + 'px';
@@ -71,7 +73,7 @@ function selectGame(gameName, event) {
     setTimeout(() => {
         window.location.href = gameName + ".html";
     }, 600);
-}
+
 
 socket.on('roomCreated', (roomCode) => {
     document.getElementById('lobby').style.display = 'none';
