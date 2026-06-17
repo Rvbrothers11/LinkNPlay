@@ -11,6 +11,16 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("playerName").innerText = username;
 });
 
+function editUsername() {
+    let currentName = localStorage.getItem("linkNPlayUser") || "Player One";
+    let newName = prompt("Enter your new gamer tag:", currentName);
+
+    if (newName && newName.trim() !== "") {
+        localStorage.setItem("linkNPlayUser", newName.trim());
+        document.getElementById("playerName").innerText = newName.trim();
+    }
+}
+
 function createRoom() {
     socket.emit('createRoom');
 }
