@@ -34,6 +34,14 @@ io.on('connection', (socket) => {
         }
     });
 
+    socket.on('disconnecting', () => {
+        socket.rooms.forEach(room => {
+            if (room != socket.id) {
+                socket.to(room).emit('opponentLeft');
+            }
+        });
+    });
+
     socket.on('disconnect', () => {
         console.log('User disconnected:', socket.id);
     });
