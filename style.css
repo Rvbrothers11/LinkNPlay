@@ -446,3 +446,41 @@ input[tupe="text"]:focus {
     display: block;
     margin: 30px auto 0;
 }
+
+.tictactoe-board {
+    display: grid;
+    grid-template-columns: repeat(3, 100px);
+    gap: 12px;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.cell {
+    width: 10px;
+    height: 100px;
+    background: rgba(0, 0, 0, 0.3);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3.5rem;
+    font-weight: 800;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.cell:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
+.x-symbol {
+    color: var(--primary);
+    text-shadow: 0 0 15px rgba(14, 165, 233, 0.6);
+}
+
+.o-symbol {
+    color: var(--secondary);
+    text-shadow: 0 0 15px rgba(139, 92, 246, 0.6);
+}
