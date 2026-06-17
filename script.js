@@ -176,6 +176,9 @@ socket.on('syncGameTransition', (gameName) => {
     }
 });
 
+
+
+
 function makeMove(index) {
     if (!isMyTurn || boardState[index] !== "") return;
 
@@ -195,3 +198,14 @@ function makeMove(index) {
 
     checkWin(mySymbol);
 }
+
+socket.on('updateBoard', (data) => {
+    boardState[data.index] = data.symbol;
+    const cell = document.getElementById(`cell-${data.index}`);
+    cell.innerText = data.symbol;
+    cell.classList.add(data.symbol === "X" ? "x-symbol" : "o-symbol");
+
+    isMyTurn = true;
+    document.getElementById('turnIndicator').innerText = "Your Turn! (" + mySymbol + ")";
+    checkWin(data.symbol);
+});
