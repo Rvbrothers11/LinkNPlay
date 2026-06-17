@@ -81,7 +81,7 @@ function animateHeroTransition(cardElement, gameName) {
         document.getElementById('active-game').style.display = 'none';
 
         if (gameName === 'tictactoe') {
-            document.getElementById('tictactoe-arena').style.display = 'block';
+            document.getElementById('tictactoe-arena').style.display = 'none';
         }
 
         clone.style.opacity = '0';

@@ -34,6 +34,14 @@ io.on('connection', (socket) => {
         }
     });
 
+    socket.on('triggerGame', (data) => {
+        socket.to(data.room).emit('syncGameTransition', data.game);
+    });
+
+    socket.on('playMove', (data) => {
+        socket.to(data.room).emit('updateBoard', data);
+    });
+
     socket.on('leaveRoom', (roomCode) => {
         socket.to(roomCode).emit('opponentLeft');
         socket.leave(roomCode);
