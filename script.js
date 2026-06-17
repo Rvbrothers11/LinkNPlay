@@ -221,5 +221,18 @@ function checkWin(lastSymbol) {
         }
     }
 
-    
+    if (roundWon) {
+        if (lastSymbol === mySymbol) {
+            document.getElementById('turnIndicator').innerText = "YOU WIN!";
+            document.getElementById('turnIndicator').style.color = "#fbbf24";
+        }
+        else {
+            document.getElementById('turnIndicator').innerText = "YOU LOSE!";
+            document.getElementById('turnIndicator').style.color = "#ef4444";
+        }
+
+        isMyTurn = false;
+        setTimeout(resetBoard, 3000);
+        return;
+    }
 }
