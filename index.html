@@ -64,6 +64,30 @@
             </div>
         </section>
 
+        
+        
+        
+        
+        <section id="tictactoe-arena" class="glass-panel" style="display: none;">
+            <div class="panel-header">
+                <h2>Tic Tac Toe</h2>
+                <p id="turnIndicator">Waiting for game to start...</p>
+            </div>
+
+            <div class="tictactoe-board">
+                <div class="cell" onclick="makeMove(0)" id="cell-0"></div>
+                <div class="cell" onclick="makeMove(1)" id="cell-1"></div>
+                <div class="cell" onclick="makeMove(2)" id="cell-2"></div>
+                <div class="cell" onclick="makeMove(3)" id="cell-3"></div>
+                <div class="cell" onclick="makeMove(4)" id="cell-4"></div>
+                <div class="cell" onclick="makeMove(5)" id="cell-5"></div>
+                <div class="cell" onclick="makeMove(6)" id="cell-6"></div>
+                <div class="cell" onclick="makeMove(7)" id="cell-7"></div>
+                <div class="cell" onclick="makeMove(8)" id="cell-8"></div>
+            </div>
+            <button class="btn btn-danger" onclick="disconnect()">Leave Match</button>
+        </section>   
+        
         <div class="section-title">
             <h2>Choose Your Arena</h2>
         </div>
@@ -76,21 +100,21 @@
                 <p>The ultimate classic 3x3 showdown.</p>
             </div>
 
-            <div class="game-card" onclick="selectGame('skribbl')">
+            <div class="game-card" onclick="selectGame('skribbl', event)">
                 <div class="card-glow"></div>
                 <div class="icon">🎨✏️</div>
                 <h3>Draw & Guess</h3>
                 <p>Sketch fast, guess faster.</p>
             </div>
 
-            <div class="game-card" onclick="selectGame('seabattle')">
+            <div class="game-card" onclick="selectGame('seabattle', event)">
                 <div class="card-glow"></div>
                 <div class="icon">🚢💥</div>
                 <h3>Sea Battle</h3>
                 <p>Command your fleet and sink enemies.</p>
             </div>
 
-            <div class="game-card" onclick="selectGame('dotsboxes')">
+            <div class="game-card" onclick="selectGame('dotsboxes', event)">
                 <div class="card-glow"></div>
                 <div class="icon">🔲🖊️</div>
                 <h3>Dots & Boxes</h3>
