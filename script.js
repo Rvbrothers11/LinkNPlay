@@ -16,7 +16,7 @@ function createRoom() {
 }
 
 function joinRoom() {
-    const code = document.getElementById('roomCodeInput').value.toUppercase();
+    const code = document.getElementById('roomCodeInput').value.toUpperCase();
 
     if (code.length ===4) {
         socket.emit('joinRoom', code);
@@ -30,7 +30,7 @@ function disconnect() {
 }
 
 function selectGame(gameName) {
-    alert("You clicked" + gameName + "! We will build this arena next.");
+    alert("You clicked " + gameName + "! We will build this arena next.");
 }
 
 socket.on('roomCreated', (roomCode) => {
