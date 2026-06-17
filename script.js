@@ -25,10 +25,6 @@ function joinRoom() {
     }
 }
 
-function disconnect() {
-    window.location.reload();
-}
-
 function selectGame(gameName) {
     alert("You clicked " + gameName + "! We will build this arena next.");
 }
@@ -59,8 +55,25 @@ socket.on('error', (message) => {
     alert(message);
 });
 
-socket.on('opponentLeft', () => {
-    alert("Your opponent disconnected!");
+function disconnect() {
+    const roomCode = document.getElementById('displayRoomCode').innerText;
+    socket.emit('leaveRoom', roomCode);
+    resetToLobby("You left the match.");
+}
 
-    window.location.reload();
+socket.on('opponentLeft', () => {
+    resetToLobby("Your opponent disconnected!");
 });
+
+function resetToLobby(message) {
+    document.getElementById('active-game').style.display = 'none';
+    document.getElementById('lobby').style.display = 'block';
+
+    const statusText = document.querySelector('.room-status p');
+    statusText.innerText = "Waiting for opponent to connect...";
+    statusText.style.color = "var(--text-muted";
+
+    document.getElementById('roomCodeInput').value = "";
+
+    alert(message);
+}
