@@ -34,6 +34,11 @@ io.on('connection', (socket) => {
         }
     });
 
+    socket.on('leaveRoom', (roomCode) => {
+        socket.leave(roomCode);
+        socket.to(roomCode).emit('opponentLeft');
+    });
+
     socket.on('disconnecting', () => {
         socket.rooms.forEach(room => {
             if (room != socket.id) {
