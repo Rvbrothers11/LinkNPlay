@@ -235,4 +235,11 @@ function checkWin(lastSymbol) {
         setTimeout(resetBoard, 3000);
         return;
     }
+
+    if (!boardState.includes("")) {
+        document.getElementById('turnIndicator').innerText = "IT'S A TIE!";
+        document.getElementById('turnIndicator').style.color = "white";
+        isMyTurn = false;
+        setTimeout(resetBoard, 3000);
+    }
 }
