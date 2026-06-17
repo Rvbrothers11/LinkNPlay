@@ -209,3 +209,17 @@ socket.on('updateBoard', (data) => {
     document.getElementById('turnIndicator').innerText = "Your Turn! (" + mySymbol + ")";
     checkWin(data.symbol);
 });
+
+function checkWin(lastSymbol) {
+    let roundWon = false;
+
+    for (let i = 0; i < winningCombos.length; i++) {
+        const [a, b, c] = winningCombos[i];
+        if (boardState[a] && boardState[a] === boardState[b] && boardState[a] === boardState[c]) {
+            roundWon = true;
+            break;
+        }
+    }
+
+    
+}
