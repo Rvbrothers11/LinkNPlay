@@ -71,9 +71,11 @@ function resetToLobby(message) {
 
     const statusText = document.querySelector('.room-status p');
     statusText.innerText = "Waiting for opponent to connect...";
-    statusText.style.color = "var(--text-muted";
+    statusText.style.color = "var(--text-muted)";
 
     document.getElementById('roomCodeInput').value = "";
 
-    alert(message);
+    setTimeout(() => {
+        alert(message);
+    }, 100);
 }
