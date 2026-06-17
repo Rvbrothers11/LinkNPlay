@@ -50,6 +50,24 @@ function selectGame(gameName, event) {
     clone.style.zIndex = '9999';
     clone.style.transition = 'all 0.6s cubic-bezier(0.25, 1, 0.5, 1)';
     clone.style.cursor = 'default';
+
+    document.body.appendChild(clone);
+
+    requestAnimationFrame(() => {
+        clone.style.top = '0';
+        clone.style.left = '0';
+        clone.style.width = '100vw';
+        clone.style.height = '100vh';
+        clone.style.borderRadius = '0';
+
+        clone.querySelector('h3').style.opacity = '0';
+        clone.querySelector('p').style.opacity = '0';
+        clone.querySelector('.icon').style.opacity = '0';
+    });
+
+    setTimeout(() => {
+        window.location.href = gameName + ".html";
+    }, 600);
 }
 
 socket.on('roomCreated', (roomCode) => {
