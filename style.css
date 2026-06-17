@@ -418,3 +418,21 @@ input[tupe="text"]:focus {
         font-size: 2rem;
     }
 }
+
+.name-container {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.edit-icon {
+    cursor: pointer;
+    font-size: 0.9rem;
+    opacity: 0.5;
+    transition: all 0.2s ease;
+}
+
+.edit-icon:hover {
+    opacity: 1;
+    transform: scale(1.1);
+}
