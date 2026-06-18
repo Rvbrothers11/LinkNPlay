@@ -484,3 +484,23 @@ input[tupe="text"]:focus {
     color: var(--secondary);
     text-shadow: 0 0 15px rgba(139, 92, 246, 0.6);
 }
+
+#skribbl-arena {
+    display: none;
+}
+
+.skribbl-layout {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 20px;
+}
+
+#drawingBoard {
+    background: rgba(0, 0, 0, 0.5);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    cursor: crosshair;
+    box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.5);
+}
