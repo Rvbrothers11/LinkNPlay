@@ -86,7 +86,47 @@
                 <div class="cell" onclick="makeMove(8)" id="cell-8"></div>
             </div>
             <button class="btn btn-danger" onclick="disconnect()">Leave Match</button>
-        </section>   
+        </section>
+
+
+
+
+
+        <section id="skribble-arena" class="glass-panel" style="display: none;">
+            <div class="panel-header">
+                <h2>Draw & Guess</h2>
+                <p id="skribbl-status">Get ready to sketch...</p>
+            </div>
+
+            <div class="skribbl-layout">
+                <div class="canvas-section">
+                    <canvas id="drawingBoard" width="500" height="400"></canvas>
+                    <div class="palette">
+                        <button class="color-btn" style="background: #ffffff;" onclick="changeColor('#ffffff')"></button>
+                        <button class="color-btn" style="background: #ef4444;" onclick="changeColor('#ef4444')"></button>
+                        <button class="color-btn" style="background: #0ea5e9;" onclick="changeColor('#0ea5e9')"></button>
+                        <button class="color-btn" style="background: #2ecc71;" onclick="changeColor('#2ecc71')"></button>
+                        <button class="color-btn" style="background: #fbbf24;" onclick="changeColor('#fbbf24')"></button>
+                        <button class="btn btn-secondary btn-small" onclick="clearCanvas()">Clear</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         
         <div class="section-title">
             <h2>Choose Your Arena</h2>
