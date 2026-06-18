@@ -274,7 +274,7 @@ let isDrawing = false;
 let currentPenColor = '#ffffff';
 
 ctx.lineCap = 'round';
-ctx.linJoin = 'round';
+ctx.lineJoin = 'round';
 ctx.lineWidth = 4;
 
 canvas.addEventListener('mousedown', (e) => {
@@ -352,7 +352,7 @@ socket.on('receiveChat', (data) => {
 
 function addChatMessage(sender, message) {
     const chatLog = document.getElementById('chatLog');
-    const msgElement = document.getElementById('div');
+    const msgElement = document.createElement('div');
     msgElement.className = 'chat-message';
     msgElement.innerHTML = `<strong>${sender}:</strong> ${message}`;
 
