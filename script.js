@@ -315,3 +315,16 @@ socket.on('receiveStroke', (data) => {
     ctx.beginPath();
     ctx.moveTo(data.x, data.y);
 });
+
+function changeColor(color) {
+    currentPenColor = color;
+}
+
+function clearCanvas() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    socket.emit('clearCanvas', currentRoom);
+}
+
+socket.on('canvasCleared', () => {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+});
