@@ -266,3 +266,14 @@ function resetBoard() {
     }
     document.getElementById('turnIndicator').style.color = "var(--text-muted)";
 }
+
+const canvas = document.getElementById('drawingBoard');
+const ctx = canvas.getContext('2d');
+
+let isDrawing = false;
+let currentPenColor = '#ffffff';
+
+ctx.lineCap = 'round';
+ctx.linJoin = 'round';
+ctx.lineWidth = 4;
+
