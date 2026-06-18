@@ -107,10 +107,22 @@
                         <button class="color-btn" style="background: #0ea5e9;" onclick="changeColor('#0ea5e9')"></button>
                         <button class="color-btn" style="background: #2ecc71;" onclick="changeColor('#2ecc71')"></button>
                         <button class="color-btn" style="background: #fbbf24;" onclick="changeColor('#fbbf24')"></button>
+                        <button class="color-btn" style="background: #6e2e00;" onclick="changeColor('#6e2e00')"></button>
                         <button class="btn btn-secondary btn-small" onclick="clearCanvas()">Clear</button>
                     </div>
                 </div>
+
+                <div class="chat-section">
+                    <div id="chatLog" class="chat-log">
+                        <div class="chat-message system-msg">Welcome to Draw & Guess!</div>
+                    </div>
+                    <div class="input-group">
+                        <input type="text" id="guessInput" placeholder="Type a guess...">
+                        <button class="btn btn-primary" onclick="sendGuess()">Send</button>
+                    </div>
+                </div>
             </div>
+            <button class="btn btn-danger leave-match-btn" onclick="disconnect()">Leave Match</button>
         </section>
 
 
