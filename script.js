@@ -359,3 +359,9 @@ function addChatMessage(sender, message) {
     chatLog.appendChild(msgElement);
     chatLog.scrollTop = chatLog.scrollHeight;
 }
+
+document.getElementById('guessInput').addEventListener('keypress', function (e) {
+    if (e.key === 'Enter') {
+        sendGuess();
+    }
+});
