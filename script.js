@@ -306,3 +306,12 @@ canvas.addEventListener('mouseup', () => {
 canvas.addEventListener('mouseout', () => {
     isDrawing = false;
 });
+
+socket.on('receiveStroke', (data) => {
+    ctx.strokeStyle = data.color;
+    ctx.lineTo(data.x, data.y);
+    ctx.stroke()
+
+    ctx.beginPath();
+    ctx.moveTo(data.x, data.y);
+});
