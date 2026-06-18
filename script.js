@@ -281,6 +281,12 @@ canvas.addEventListener('mousedown', (e) => {
     isDrawing = true;
     ctx.beginPath();
     ctx.moveTo(e.offsetX, e.offsetY);
+
+    socket.emit('startStroke', {
+        room: currentRoom,
+        x: e.offsetX,
+        y: e.offsetY
+    });
 });
 
 canvas.addEventListener('mousemove', (e) => {
@@ -306,6 +312,22 @@ canvas.addEventListener('mouseup', () => {
 canvas.addEventListener('mouseout', () => {
     isDrawing = false;
 });
+
+
+socket.on('receiveStartStroke', (data) => {
+    ctx.beginPath();
+    ctx.moveTo(data.x, data.y);
+});
+
+socket.on('receiveStroke', (data) => {
+    ctx.strokeStyle = data.color;
+    ctx.lineTo(data.x, data.y);
+    ctx.stroke()
+
+    ctx.beginPath();
+    ctx.moveTo(data.x, data.y);
+});
+
 
 socket.on('receiveStroke', (data) => {
     ctx.strokeStyle = data.color;
