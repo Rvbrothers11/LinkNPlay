@@ -94,6 +94,9 @@ function animateHeroTransition(cardElement, gameName) {
         if (gameName === 'tictactoe') {
             document.getElementById('tictactoe-arena').style.display = 'block';
         }
+        else if (gameName === 'skribbl') {
+            document.getElementById('skribbl-arena').style.display = 'block';
+        }
 
         clone.style.opacity = '0';
         setTimeout(() => clone.remove(), 600);

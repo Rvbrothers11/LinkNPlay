@@ -43,6 +43,8 @@ io.on('connection', (socket) => {
 
     
    
+    
+    
     socket.on('drawStroke', (data) => {
         socket.to(data.room).emit('receiveStroke', data);
     });
