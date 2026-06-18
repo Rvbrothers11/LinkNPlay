@@ -530,3 +530,42 @@ input[tupe="text"]:focus {
     padding: 8px 15px;
     font-size: 0.9rem;
 }
+
+.chat-section {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 300px;
+}
+
+.chat-log {
+    flex: 1;
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    height: 345px;
+    padding: 15px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.chat-message {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 8px 12px;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    word-wrap: break-word;
+}
+
+.chat-message strong {
+    color: var(--primary);
+}
+
+.system-msg {
+    background: rgba(139, 92, 246, 0.2);
+    color: #e9d5ff;
+    font-weight: 600;
+    text-align: center;
+}
