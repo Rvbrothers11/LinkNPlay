@@ -277,3 +277,32 @@ ctx.lineCap = 'round';
 ctx.linJoin = 'round';
 ctx.lineWidth = 4;
 
+canvas.addEventListener('mousedown', (e) => {
+    isDrawing = true;
+    ctx.beginPath();
+    ctx.moveTo(e.offsetX, e.offsetY);
+});
+
+canvas.addEventListener('mousemove', (e) => {
+    if (!isDrawing) return;
+
+    ctx.strokeStyle = currentPenColor;
+    ctx.lineTo(e.offsetX, e.offsetY);
+    ctx.stroke();
+
+    socket.emit('drawStroke', {
+        room: currentRoom,
+        x: e.offsetX,
+        y: e.offsetY,
+        color: currentPenColor
+    });
+});
+
+canvas.addEventListener('mouseup', () => {
+    isDrawing = false;
+    ctx.beginPath();
+});
+
+canvas.addEventListener('mouseout', () => {
+    isDrawing = false;
+});
