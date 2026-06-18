@@ -115,7 +115,7 @@ socket.on('roomCreated', (roomCode) => {
 
 socket.on('roomJoined', (roomCode) => {
     currentRoom = roomCode;
-    mySymbol = "0";
+    mySymbol = "O";
     isMyTurn = false;
     document.getElementById('lobby').style.display = 'none';
     document.getElementById('active-game').style.display = 'block';
