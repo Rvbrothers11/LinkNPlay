@@ -88,14 +88,24 @@
             <button class="btn btn-danger" onclick="disconnect()">Leave Match</button>
         </section>
 
-        <section id="skribbl-arena" class="glass-panel" style="display: none;">
+        <section id="skribbl-arena" class="glass-panel">
             <div class="panel-header">
                 <h2>Draw & Guess</h2>
+                <div class="skribbl-header-info">
+                    <span id="skribbl-round">Round: 1 / 5</span>
+                    <span id="skribbl-timer" class="neon-text"> 60s</span>
+                </div>
                 <p id="skribbl-status">Get ready to sketch...</p>
             </div>
 
             <div class="skribbl-layout">
                 <div class="canvas-section">
+                    <div id="word-selection-overlay" class="glass-panel">
+                        <h3>Choose a word to draw!</h3>
+                        <div id="word-options">
+                        </div>
+
+                    </div>
                     <canvas id="drawingBoard" width="500" height="400"></canvas>
                     <div class="palette">
                         <button class="color-btn" style="background: #ffffff;" onclick="changeColor('#ffffff')"></button>
