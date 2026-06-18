@@ -328,3 +328,21 @@ function clearCanvas() {
 socket.on('canvasCleared', () => {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 });
+
+
+function sendGuess() {
+    const input = document.getElementById('guessInput');
+    const message = input.value.trim();
+
+    if (message === "") return;
+
+    addChatMessage(document.getElementById("playerName").innerText, message);
+    socket.emit('sendChat', {
+        room: currentRoom,
+        sender: document.getElementById("playerName").innerText,
+        message: message
+    });
+
+    input.value = "";
+}
+
