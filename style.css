@@ -593,3 +593,49 @@ input[tupe="text"]:focus {
     scrollbar-width: thin;
     scrollbar-color: var(--primary) rgba(0, 0, 0, 0.2)
 }
+
+.skribbl-header-info {
+    display: flex;
+    justify-content: space-between;
+    font-weight: 800;
+    font-size: 1.2rem;
+    color: var(--primary);
+    margin-top: 10px;
+}
+
+.canvas-section {
+    position: relative;
+}
+
+#word-selection-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+    background: rgba(11, 17, 32, 0.95);
+    border-radius: 12px;
+}
+
+#word-selection-overlay h3 {
+    margin-bottom: 20px;
+}
+
+#word-options {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.color-white { background-color: #ffffff; }
+.color-red { background-color: #ef4444; }
+.color-blue { background-color: #0ea5e9; }
+.color-green { background-color: #2ecc71; }
+.color-yellow { background-color: #fbbf24; }
+.color-brown { background-color: #6e2e00; }
