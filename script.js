@@ -346,3 +346,16 @@ function sendGuess() {
     input.value = "";
 }
 
+socket.on('receiveChat', (data) => {
+    addChatMessage(data.sender, data.message);
+});
+
+function addChatMessage(sender, message) {
+    const chatLog = document.getElementById('chatLog');
+    const msgElement = document.getElementById('div');
+    msgElement.className = 'chat-message';
+    msgElement.innerHTML = `<strong>${sender}:</strong> ${message}`;
+
+    chatLog.appendChild(msgElement);
+    chatLog.scrollTop = chatLog.scrollHeight;
+}
