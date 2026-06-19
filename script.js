@@ -450,7 +450,7 @@ socket.on('receiveChat', (data) => {
 });
 socket.on('skribblWin', (data) => {
     clearInterval(skribblTimerInterval);
-    handleSkribblEnd(false, "", data.word, 0, 0);
+    handleSkribblEnd(true, data.winner, data.word, data.gPoints, data.dPoints);
 });
 
 function handleSkribblEnd(wasWon, winnerName, word, gPoints, dPoints) {
@@ -482,6 +482,8 @@ function handleSkribblEnd(wasWon, winnerName, word, gPoints, dPoints) {
         if (!currentDrawerIsHost) {
             skribblRound++;
         }
+
+        currentDrawerIsHost = !currentDrawerIsHost;
 
         if (skribblRound > maxSkribblRounds) {
             document.getElementById('skribbl-status').innerText = "Game Over! Check scores.";
