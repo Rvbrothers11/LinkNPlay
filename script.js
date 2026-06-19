@@ -421,3 +421,26 @@ function clearCanvas() {
 socket.on('canvasCleared', () => {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 });
+
+function sendGuess() {
+    const input = document.getElementById('guessInput');
+    const message = input.value.trim();
+    if (message === "") return;
+
+    if (!isDrawer && currentSkribblWord !=="" && message.toLowerCase() === currentSkribblWord.toLowerCase()) {
+        const myName = document.getElementById("playerName").innerText;
+        clearInterval(skribblTimerInterval);
+
+        let guesserPoints = Math.max(10, Math.floor((skribblTime / 60) *500));
+        let drawerPoints = Math.floor(guesserPoints / 2);
+
+        socket.emit('skribblWin', { room: currentRoom, winner: myName, word: currentSkribblWord, gPoints: guesserPoints, dPoints: drawerPoints });
+        handleSkribblEnd(true, myName, currentSkribblWord, guesserPoints, drawerPoints);
+        input.value = "";
+        return;
+    }
+
+    addChatMessage(document.getElementById("playerName").innerText, message);
+    socket.emit('sendChat', { room: currentRoom, sender: document.getElementById("playerName").innerText, message: message});
+    input.value = "";
+}
