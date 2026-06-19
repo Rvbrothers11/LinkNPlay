@@ -323,3 +323,21 @@ function startSkribblTurn() {
     }
 }
 
+function showWordSelection() {
+    const overlay = document.getElementById('word-selection-overlay');
+    const optionsDiv = document.getElementById('word-options');
+    optionsDiv.innerHTML = '';
+    overlay.style.display = 'flex';
+
+    let shuffled = [...dictionary].sort(() => 0.5 - Math.random());
+    let options = shuffled.slice(0, 5);
+
+    options.forEach(word => {
+        let btn = document.createElement('button');
+        btn.classname = 'btn btn-secondary';
+        btn.innerText = word;
+        btn.onclick = () => selectWord(word);
+        optionsDiv.appendChild(btn);
+    });
+}
+
