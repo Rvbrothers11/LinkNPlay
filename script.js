@@ -309,8 +309,8 @@ function startSkribblTurn() {
     isDrawer = (iAmHost && currentDrawerIsHost) || (!iAmHost && !currentDrawerIsHost);
 
     if (isDrawer) {
-        document.getElementById('skribbl-status').disabled = true;
-        document.getElementById('guess-input').placeholder = "You are drawing!";
+        document.getElementById('guessInput').disabled = true;
+        document.getElementById('guessInput').placeholder = "You are drawing!";
         document.getElementById('skribbl-status').innerText = "Selecting word...";
         showWordSelection();
     }
@@ -334,7 +334,7 @@ function showWordSelection() {
 
     options.forEach(word => {
         let btn = document.createElement('button');
-        btn.classname = 'btn btn-secondary';
+        btn.className = 'btn btn-secondary';
         btn.innerText = word;
         btn.onclick = () => selectWord(word);
         optionsDiv.appendChild(btn);
