@@ -494,3 +494,17 @@ function handleSkribblEnd(wasWon, winnerName, word, gPoints, dPoints) {
     }, 4000);
 }
 
+function addChatMessage(sender, message, isSystem = false) {
+    const chatLog = document.getElementById('chatLog');
+    const msgElement = document.createElement('div');
+    msgElement.className = isSystem ? 'chat-message system-msg' : 'chat-message';
+    msgElement.innerHTML = `<strong>${sender}:</strong> ${message}`;
+    chatLog.appendChild(msgElement);
+    chatLog.scrollTop = chatLog.scrollHeight;
+}
+
+document.getElementById('guessInput').addEventListener('keypress', function (e) {
+    if (e.key === 'Enter') { 
+        sendGuess();
+    }
+});
