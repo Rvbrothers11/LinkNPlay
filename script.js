@@ -109,7 +109,7 @@ function animateHeroTransition(cardElement, gameName) {
             skribblRound = 1;
             currentDrawerIsHost = true;
             document.getElementById("playerScore").innerText = "0";
-            document.getElementById('chatLog').innerHTML = <div class="chat-message system-msg">Welcome to Draw & Guess!</div>;
+            document.getElementById('chatLog').innerHTML = '<div class="chat-message system-msg">Welcome to Draw & Guess!</div>';
             startSkribblTurn();
         }
 
@@ -459,7 +459,7 @@ function handleSkribblEnd(wasWon, winnerName, word, gPoints, dPoints) {
 
     if (wasWon) {
         addChatMessage("SYSTEM", `${winnerName} guessed the word: ${word.toUpperCase()}!`, true);
-        document.getElementById('skribbl-status').innerText = `Round over! The word was ${word.toUpperCase}`;
+        document.getElementById('skribbl-status').innerText = `Round over! The word was ${word.toUpperCase()}`;
 
         let myScore = parseInt(document.getElementById("playerScore").innerText);
         let myName = document.getElementById("playerName").innerText;
