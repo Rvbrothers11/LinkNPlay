@@ -283,9 +283,13 @@ function resetBoard() {
     document.getElementById('turnIndicator').style.color = "var(--text-muted)";
 }
 
+
+
+
+
+
 const canvas = document.getElementById('drawingBoard');
 const ctx = canvas.getContext('2d');
-
 let isDrawing = false;
 let currentPenColor = '#ffffff';
 
@@ -293,113 +297,16 @@ ctx.lineCap = 'round';
 ctx.lineJoin = 'round';
 ctx.lineWidth = 4;
 
-canvas.addEventListener('mousedown', (e) => {
-    isDrawing = true;
-    ctx.beginPath();
-    ctx.moveTo(e.offsetX, e.offsetY);
-
-    socket.emit('startStroke', {
-        room: currentRoom,
-        x: e.offsetX,
-        y: e.offsetY
-    });
-});
-
-canvas.addEventListener('mousemove', (e) => {
-    if (!isDrawing) return;
-
-    ctx.strokeStyle = currentPenColor;
-    ctx.lineTo(e.offsetX, e.offsetY);
-    ctx.stroke();
-
-    socket.emit('drawStroke', {
-        room: currentRoom,
-        x: e.offsetX,
-        y: e.offsetY,
-        color: currentPenColor
-    });
-});
-
-canvas.addEventListener('mouseup', () => {
-    isDrawing = false;
-    ctx.beginPath();
-});
-
-canvas.addEventListener('mouseout', () => {
-    isDrawing = false;
-});
-
-
-socket.on('receiveStartStroke', (data) => {
-    ctx.beginPath();
-    ctx.moveTo(data.x, data.y);
-});
-
-socket.on('receiveStroke', (data) => {
-    ctx.strokeStyle = data.color;
-    ctx.lineTo(data.x, data.y);
-    ctx.stroke()
-
-    ctx.beginPath();
-    ctx.moveTo(data.x, data.y);
-});
-
-
-socket.on('receiveStroke', (data) => {
-    ctx.strokeStyle = data.color;
-    ctx.lineTo(data.x, data.y);
-    ctx.stroke()
-
-    ctx.beginPath();
-    ctx.moveTo(data.x, data.y);
-});
-
-function changeColor(color) {
-    currentPenColor = color;
-}
-
-function clearCanvas() {
+function startSkribblTurn() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    socket.emit('clearCanvas', currentRoom);
+    clearInterval(skribblTimerInterval);
+    skribblTime = 60;
+
+    document.getElementById('skribbl-timer').innerText = `${skribblTime}s`;
+    document.getElementById('skribbl-round').innerText = `Round: ${skribblRound} / ${maxSkribblRounds}`;
+    document.getElementById('guessInput').disabled = false;
+
+    isDrawer = (iAmHost && currentDrawerIsHost) || (!iAmHost && !currentDrawerIsHost);
+
+
 }
-
-socket.on('canvasCleared', () => {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-});
-
-
-function sendGuess() {
-    const input = document.getElementById('guessInput');
-    const message = input.value.trim();
-
-    if (message === "") return;
-
-    addChatMessage(document.getElementById("playerName").innerText, message);
-    socket.emit('sendChat', {
-        room: currentRoom,
-        sender: document.getElementById("playerName").innerText,
-        message: message
-    });
-
-    input.value = "";
-}
-
-socket.on('receiveChat', (data) => {
-    addChatMessage(data.sender, data.message);
-});
-
-function addChatMessage(sender, message) {
-    const chatLog = document.getElementById('chatLog');
-    const msgElement = document.createElement('div');
-    msgElement.className = 'chat-message';
-    msgElement.innerHTML = `<strong>${sender}:</strong> ${message}`;
-
-    chatLog.appendChild(msgElement);
-    chatLog.scrollTop = chatLog.scrollHeight;
-}
-
-document.getElementById('guessInput').addEventListener('keypress', function (e) {
-    if (e.key === 'Enter') {
-        sendGuess();
-    }
-});
