@@ -388,3 +388,36 @@ canvas.addEventListener('mousemove', (e) => {
     socket.emit('drawStroke', { room: currentRoom, x: e.offsetX, y: e.offsetY, color: currentPenColor });
 });
 
+canvas.addEventListener('mouseup', () => {
+    isDrawing = false;
+    ctx.beginPath();
+});
+canvas.addEventListener('mouseout', () => {
+    isDrawing = false;
+});
+
+socket.on('receiveStartStroke', (data) => {
+    ctx.beginPath(); ctx.moveTo(data.x, data.y);
+});
+socket.on('receiveStroke', (data) => {
+    ctx.strokeStyle = data.color;
+    ctx.lineTo(data.x, data.y);
+    ctx.stroke();
+    ctx.beginPath();
+    ctx.moveTo(data.x, data.y);
+});
+
+function changeColor(color) {
+    if (!isDrawer)
+        return;
+    currentPenColor = color;
+}
+function clearCanvas() {
+    if (!isDrawer)
+        return;
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    socket.emit('clearCanvas', currentRoom);
+}
+socket.on('canvasCleared', () => {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+});
