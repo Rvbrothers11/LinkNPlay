@@ -454,5 +454,27 @@ socket.on('skribblWin', (data) => {
 });
 
 function handleSkribblEnd(wasWon, winnerName, word, gPoints, dPoints) {
-    
+    isDrawer = false;
+    document.getElementById('guessInput').disabled = true;
+
+    if (wasWon) {
+        addChatMessage("SYSTEM", `${winnerName} guessed the word: ${word.toUpperCase()}!`, true);
+        document.getElementById('skribbl-status').innerText = `Round over! The word was ${word.toUpperCase}`;
+
+        let myScore = parseInt(document.getElementById("playerScore").innerText);
+        let myName = document.getElementById("playerName").innerText;
+
+        if (winnerName === myName) {
+            document.getElementById("playerScore").innerText = myScore + gPoints;
+            addChatMessage("SCORE", `You earned +${gPoints} points!`, true);
+        }
+        else {
+            document.getElementById("playerScore").innerText = myScore + dPoints;
+            addChatMessage("Score", `You earned +${dPoints} points as the artist!`, true);
+        }
+    }
+    else {
+        addChatMessage("SYSTEM", `Time's up! The word was: ${word.toUpperCase()}`, true);
+        document.getElementById('skribbl-status').innerText = `Time's up! The word was ${word.toUpperCase()}`;
+    }
 }
