@@ -59,6 +59,15 @@ io.on('connection', (socket) => {
     socket.on('sendChat', (data) => {
         socket.to(data.room).emit('receiveChat', data);
     });
+    socket.on('setSkribblWord', (data) => {
+        socket.to(data.room).emit('receiveSkribblWord', data.word);
+    });
+    socket.on('skribblWin', (data) => {
+        socket.to(data.room).emit('skribblWin', data);
+    });
+    socket.on('skribblTimeout', (data) => {
+        socket.to(data.room).emit('skribblTimeout', data);
+    });
     
 
 
