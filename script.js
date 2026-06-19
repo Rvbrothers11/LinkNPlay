@@ -341,3 +341,17 @@ function showWordSelection() {
     });
 }
 
+function selectWord(word) {
+    document.getElementById('word-selection-overlay').style.display = 'none';
+    currentSkribblWord = word;
+    document.getElementById('skribbl-status').innerText = "Draw this: " + word.toUpperCase();
+    socket.emit('setSkribblWord', { room: currentRoom, word: word });
+    startSkribblTimer();
+}
+
+socket.on('receiveSkribblWord', (word) => {
+    currentSkribblWord = word;
+    let hint = word.replace(/[a-zA-Z]/g, "- ");
+    document.getElementById('skribbl-status').innerText = "Guess the word: " + hint;
+    startSkribblTimer();
+});
