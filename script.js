@@ -308,5 +308,18 @@ function startSkribblTurn() {
 
     isDrawer = (iAmHost && currentDrawerIsHost) || (!iAmHost && !currentDrawerIsHost);
 
+    if (isDrawer) {
+        document.getElementById('skribbl-status').disabled = true;
+        document.getElementById('guess-input').placeholder = "You are drawing!";
+        document.getElementById('skribbl-status').innerText = "Selecting word...";
+        showWordSelection();
+    }
 
+    else {
+        currentSkribblWord = "";
+        document.getElementById('skribbl-status').innerText = "Waiting for the drawer to pick a word...";
+        document.getElementById('guessInput').placeholder = "Type a guess...";
+        document.getElementById('word-selection-overlay').style.display = 'none';
+    }
 }
+
