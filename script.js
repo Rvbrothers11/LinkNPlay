@@ -444,3 +444,15 @@ function sendGuess() {
     socket.emit('sendChat', { room: currentRoom, sender: document.getElementById("playerName").innerText, message: message});
     input.value = "";
 }
+
+socket.on('receiveChat', (data) => {
+    addChatMessage(data.sender, data.message);
+});
+socket.on('skribblWin', (data) => {
+    clearInterval(skribblTimerInterval);
+    handleSkribblEnd(false, "", data.word, 0, 0);
+});
+
+function handleSkribblEnd(wasWon, winnerName, word, gPoints, dPoints) {
+    
+}
