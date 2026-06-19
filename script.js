@@ -1,5 +1,15 @@
 const socket = io();
 
+let iAmHost = false;
+let skribblRound = 1;
+const maxSkribblRounds = 5;
+let currentDrawerIsHost = true;
+let isDrawer = false;
+let currentSkribblWord = "";
+let skribblTime = 60;
+let skribblTimerInterval = null;
+const dictionary = ["apple", "pizza", "car", "tree", "house", "sun", "cat", "dog", "fish", "bird", "moon", "star", "flower", "computer", "ocean", "mountain", "guitar", "castle", "dragon", "spaceship"];
+
 let currentRoom = "";
 let mySymbol = "";
 let isMyTurn = false;
