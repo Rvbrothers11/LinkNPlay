@@ -372,3 +372,19 @@ function startSkribblTimer() {
     }, 1000);
 }
 
+canvas.addEventListener('mousedown', (e) => {
+    if (!isDrawer) return;
+    isDrawing = true;
+    ctx.beginPath();
+    ctx.moveTo(e.offsetX, e.offsetY);
+    socket.emit('startStroke', { room: currentRoom, x: e.offsetX, y: e.offsetY});
+});
+
+canvas.addEventListener('mousemove', (e) => {
+    if (!isDrawing || !isDrawer) return;
+    ctx.strokeStyle = currentPenColor;
+    ctx.lineTo(e.offsetX, e.offsetY);
+    ctx.stroke();
+    socket.emit('drawStroke', { room: currentRoom, x: e.offsetX, y: e.offsetY, color: currentPenColor });
+});
+
