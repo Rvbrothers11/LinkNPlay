@@ -477,4 +477,20 @@ function handleSkribblEnd(wasWon, winnerName, word, gPoints, dPoints) {
         addChatMessage("SYSTEM", `Time's up! The word was: ${word.toUpperCase()}`, true);
         document.getElementById('skribbl-status').innerText = `Time's up! The word was ${word.toUpperCase()}`;
     }
+
+    setTimeout(() => {
+        if (!currentDrawerIsHost) {
+            skribblRound++;
+        }
+
+        if (skribblRound > maxSkribblRounds) {
+            document.getElementById('skribbl-status').innerText = "Game Over! Check scores.";
+            addChatMessage("SYSTEM", "The 5 rounds have ended!", true);
+            setTimeout(() => resetToLobby("Skribbl match finished!"), 5000);
+        }
+        else {
+            startSkribblTurn();
+        }
+    }, 4000);
 }
+
