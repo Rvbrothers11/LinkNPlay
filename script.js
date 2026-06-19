@@ -106,6 +106,11 @@ function animateHeroTransition(cardElement, gameName) {
         }
         else if (gameName === 'skribbl') {
             document.getElementById('skribbl-arena').style.display = 'block';
+            skribblRound = 1;
+            currentDrawerIsHost = true;
+            document.getElementById("playerScore").innerText = "0";
+            document.getElementById('chatLog').innerHTML = <div class="chat-message system-msg">Welcome to Draw & Guess!</div>;
+            startSkribblTurn();
         }
 
         clone.style.opacity = '0';
