@@ -355,3 +355,20 @@ socket.on('receiveSkribblWord', (word) => {
     document.getElementById('skribbl-status').innerText = "Guess the word: " + hint;
     startSkribblTimer();
 });
+
+function startSkribblTimer() {
+    clearInterval(skribblTimerInterval);
+    skribblTimerInterval = setInterval(() => {
+        skribblTime--;
+        document.getElementById('skribbl-timer').innerText = `${skribblTime}s`;
+
+        if (skribblTime <= 0) {
+            clearInterval(skribblTimerInterval);
+            if (iAmHost) {
+                socket.emit('skribblTimeout', {room: currentRoom, word: currentSkribblWord });
+                handleSkribblEnd(false, "", currentSkribblWord, 0, 0);
+            }
+        }
+    }, 1000);
+}
+
