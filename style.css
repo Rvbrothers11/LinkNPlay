@@ -716,3 +716,59 @@ input[tupe="text"]:focus {
     margin-bottom: 5px;
     position: relative;
 }
+
+.progress-bar {
+    height: 100%;
+    width: 0%;
+    background: var(--rimary);
+    border-radius: 5px;
+    box-shadow: 0 0 10pxrgba(14, 165, 233, 0.5);
+    transition: width 0.1s linear;
+}
+
+.time-display {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    margin-bottom: 15px;
+}
+
+.music-controls {
+    displaY: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.music-btn {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: transform 0.2s, color 0.2s;
+}
+
+.music-btn:hover {
+    color: var(--primary);
+    transform: scale(1.1);
+}
+.play-btn {
+    font-size: 1.8rem;
+    color: var(--primary);
+}
+
+.music-collapsed #music-content {
+    display: none;
+}
+.music-collapsed {
+    width: 180px !important;
+    padding: 10px 15px !important;
+    border-radius: 50px !important;
+}
+.music-collapsed .music-drag-handle {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
