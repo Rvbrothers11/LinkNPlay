@@ -453,6 +453,11 @@ socket.on('skribblWin', (data) => {
     handleSkribblEnd(true, data.winner, data.word, data.gPoints, data.dPoints);
 });
 
+socket.on('skribblTimeout', (data) => {
+    clearInterval(skribblTimerInterval);
+    handleSkribblEnd(true, data.winner, data.word, data.gPoints, data.dPoints);
+});
+
 function handleSkribblEnd(wasWon, winnerName, word, gPoints, dPoints) {
     isDrawer = false;
     document.getElementById('guessInput').disabled = true;
