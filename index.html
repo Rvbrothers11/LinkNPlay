@@ -181,6 +181,37 @@
         </section>
     </main>
 
+    <div id="floating-music-player" class="glass-panel">
+        <div id="music-header" class="music-drag-handle">
+            <span id="music-toggle-btn" onclick="toggleMusicPlayer()" title="Minimize/Maximize">🔵</span>
+            <span class="music-title-bar">Music Player</span>
+            <span style="width: 15px;"></span>
+        </div>
+
+        <div id="music-content">
+            <div class="music-info">
+                <div id="track-name" class="neon-text">Loading...</div>
+                <div id="track-artist" class="credit-text">Artist</div>
+            </div>
+
+            <div class="progress-container" onclick="seekAudio(event)" id="progress-container">
+                <div class="progress-bar" id="progress-bar"></div>
+            </div>
+
+            <div class="time-display">
+                <span id="current-time">0:00</span>
+                <span id="total-time">0:00</span>
+            </div>
+
+            <div class="music-controls">
+                <button class="music-btn" onclick="prevTrack()" title="Previous">⏮</button>
+                <button class="music-btn" id="play-pause-btn" onclick="togglePlay()">▶</button>
+                <button class="music-btn" onclick="nextTrack()" title="Next">⏭</button>
+            </div>
+        </div>
+        <audio id="bgMusic" preload="auto"></audio>
+    </div>
+
     <script src="/socket.io/socket.io.js"></script>
     <script src="script.js"></script>
 
