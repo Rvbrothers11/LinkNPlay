@@ -639,3 +639,38 @@ input[tupe="text"]:focus {
 .color-green { background-color: #2ecc71; }
 .color-yellow { background-color: #fbbf24; }
 .color-brown { background-color: #6e2e00; }
+
+#floating-music-player {
+    position: fixed;
+    bottom: 20px;
+    right: 0px;
+    width: 280px;
+    padding: 15px 20px;
+    z-index: 10000;
+    transition: width 0.3s ease, border-radius 0.3s ease;
+    user-select: none;
+    background: var(--surface);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 24px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+.music-drag-handle {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: grab;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    margin-bottom: 10px;
+}
+
+.music-grag-handle:active { cursor: grabbing; }
+
+#music-toggle-btn{
+    cursor: pointer;
+    font-size: 1.4rem;
+    font-weight: bold;
+    color: var(--text-muted);
+    transition: color 0.2s;
+}
