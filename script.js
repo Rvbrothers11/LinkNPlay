@@ -456,7 +456,6 @@ socket.on('skribblTimeout', (data) => {
 });
 
 function handleSkribblEnd(wasWon, winnerName, word, gPoints, dPoints) {
-    isDrawer = false;
     document.getElementById('guessInput').disabled = true;
 
     if (wasWon) {
@@ -477,6 +476,8 @@ function handleSkribblEnd(wasWon, winnerName, word, gPoints, dPoints) {
         addChatMessage("SYSTEM", `Time's up! The word was: ${word.toUpperCase()}`, true);
         document.getElementById('skribbl-status').innerText = `Time's up! The word was ${word.toUpperCase()}`;
     }
+
+    isDrawer = false;
 
     setTimeout(() => {
         if (!currentDrawerIsHost) {
