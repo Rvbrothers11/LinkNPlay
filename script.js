@@ -283,11 +283,6 @@ function resetBoard() {
     document.getElementById('turnIndicator').style.color = "var(--text-muted)";
 }
 
-
-
-
-
-
 const canvas = document.getElementById('drawingBoard');
 const ctx = canvas.getContext('2d');
 let isDrawing = false;
@@ -302,7 +297,7 @@ function startSkribblTurn() {
     clearInterval(skribblTimerInterval);
     skribblTime = 60;
 
-    document.getElementById('skribbl-timer').innerText = `${skribblTime}s`;
+    document.getElementById('skribbl-timer').innerText = `⏱️ ${skribblTime}s`;
     document.getElementById('skribbl-round').innerText = `Round: ${skribblRound} / ${maxSkribblRounds}`;
     document.getElementById('guessInput').disabled = false;
 
@@ -313,9 +308,7 @@ function startSkribblTurn() {
         document.getElementById('guessInput').placeholder = "You are drawing!";
         document.getElementById('skribbl-status').innerText = "Selecting word...";
         showWordSelection();
-    }
-
-    else {
+    } else {
         currentSkribblWord = "";
         document.getElementById('skribbl-status').innerText = "Waiting for the drawer to pick a word...";
         document.getElementById('guessInput').placeholder = "Type a guess...";
@@ -351,7 +344,7 @@ function selectWord(word) {
 
 socket.on('receiveSkribblWord', (word) => {
     currentSkribblWord = word;
-    let hint = word.replace(/[a-zA-Z]/g, "- ");
+    let hint = word.replace(/[a-zA-Z]/g, "_ ");
     document.getElementById('skribbl-status').innerText = "Guess the word: " + hint;
     startSkribblTimer();
 });
@@ -360,7 +353,7 @@ function startSkribblTimer() {
     clearInterval(skribblTimerInterval);
     skribblTimerInterval = setInterval(() => {
         skribblTime--;
-        document.getElementById('skribbl-timer').innerText = `${skribblTime}s`;
+        document.getElementById('skribbl-timer').innerText = `⏱️ ${skribblTime}s`;
 
         if (skribblTime <= 0) {
             clearInterval(skribblTimerInterval);
@@ -392,13 +385,16 @@ canvas.addEventListener('mouseup', () => {
     isDrawing = false;
     ctx.beginPath();
 });
+
 canvas.addEventListener('mouseout', () => {
     isDrawing = false;
 });
 
 socket.on('receiveStartStroke', (data) => {
-    ctx.beginPath(); ctx.moveTo(data.x, data.y);
-});
+    ctx.beginPath();
+    ctx.moveTo(data.x, data.y);
+}); 
+
 socket.on('receiveStroke', (data) => {
     ctx.strokeStyle = data.color;
     ctx.lineTo(data.x, data.y);
@@ -408,16 +404,16 @@ socket.on('receiveStroke', (data) => {
 });
 
 function changeColor(color) {
-    if (!isDrawer)
-        return;
+    if (!isDrawer) return;
     currentPenColor = color;
 }
+
 function clearCanvas() {
-    if (!isDrawer)
-        return;
+    if (!isDrawer) return;
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     socket.emit('clearCanvas', currentRoom);
 }
+
 socket.on('canvasCleared', () => {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 });
@@ -427,11 +423,11 @@ function sendGuess() {
     const message = input.value.trim();
     if (message === "") return;
 
-    if (!isDrawer && currentSkribblWord !=="" && message.toLowerCase() === currentSkribblWord.toLowerCase()) {
+    if (!isDrawer && currentSkribblWord !== "" && message.toLowerCase() === currentSkribblWord.toLowerCase()) {
         const myName = document.getElementById("playerName").innerText;
         clearInterval(skribblTimerInterval);
 
-        let guesserPoints = Math.max(10, Math.floor((skribblTime / 60) *500));
+        let guesserPoints = Math.max(10, Math.floor((skribblTime / 60) * 500));
         let drawerPoints = Math.floor(guesserPoints / 2);
 
         socket.emit('skribblWin', { room: currentRoom, winner: myName, word: currentSkribblWord, gPoints: guesserPoints, dPoints: drawerPoints });
@@ -448,6 +444,7 @@ function sendGuess() {
 socket.on('receiveChat', (data) => {
     addChatMessage(data.sender, data.message);
 });
+
 socket.on('skribblWin', (data) => {
     clearInterval(skribblTimerInterval);
     handleSkribblEnd(true, data.winner, data.word, data.gPoints, data.dPoints);
@@ -455,7 +452,7 @@ socket.on('skribblWin', (data) => {
 
 socket.on('skribblTimeout', (data) => {
     clearInterval(skribblTimerInterval);
-    handleSkribblEnd(true, data.winner, data.word, data.gPoints, data.dPoints);
+    handleSkribblEnd(false, "", data.word, 0, 0);
 });
 
 function handleSkribblEnd(wasWon, winnerName, word, gPoints, dPoints) {
@@ -469,16 +466,14 @@ function handleSkribblEnd(wasWon, winnerName, word, gPoints, dPoints) {
         let myScore = parseInt(document.getElementById("playerScore").innerText);
         let myName = document.getElementById("playerName").innerText;
 
-        if (winnerName === myName) {
+        if (winnerName === myName && !isDrawer) {
             document.getElementById("playerScore").innerText = myScore + gPoints;
             addChatMessage("SCORE", `You earned +${gPoints} points!`, true);
-        }
-        else {
+        } else if (isDrawer) {
             document.getElementById("playerScore").innerText = myScore + dPoints;
-            addChatMessage("Score", `You earned +${dPoints} points as the artist!`, true);
+            addChatMessage("SCORE", `You earned +${dPoints} points as the artist!`, true);
         }
-    }
-    else {
+    } else {
         addChatMessage("SYSTEM", `Time's up! The word was: ${word.toUpperCase()}`, true);
         document.getElementById('skribbl-status').innerText = `Time's up! The word was ${word.toUpperCase()}`;
     }
@@ -494,8 +489,7 @@ function handleSkribblEnd(wasWon, winnerName, word, gPoints, dPoints) {
             document.getElementById('skribbl-status').innerText = "Game Over! Check scores.";
             addChatMessage("SYSTEM", "The 5 rounds have ended!", true);
             setTimeout(() => resetToLobby("Skribbl match finished!"), 5000);
-        }
-        else {
+        } else {
             startSkribblTurn();
         }
     }, 4000);
