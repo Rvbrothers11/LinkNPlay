@@ -561,3 +561,22 @@ function prevTrack() {
 }
 
 audio.addEventListener('ended', nextTrack);
+
+audio.addEventListener('timeupdate', () => {
+    if (audio.duration) {
+        const progressPercent = (audio.currentTime / audio.duration) * 180;
+        progressBar.style.width = `${progressPercent}%`;
+
+        let currentMins = Math.floor(audio.currentTime / 60);
+        let currentSecs = Math.floor(audio.currentTime % 60);
+        if (currentSecs < 10) 
+            currentSecs = "0" + currentSecs;
+        currentTimeEl.innerText = `${currentMins}:${currentSecs}`;
+
+        let durationMins = Math.floor(audio.duration / 60);
+        let durationSecs = Math.floor(audio.duration % 60);
+        if (durationSecs < 10)
+            durationSecs = "0" + durationSecs;
+        totalTimeEl.innerText = `${durationMins}:${durationSecs}`;
+    }
+});
