@@ -614,27 +614,31 @@ document.addEventListener("mousemove", drag);
 document.addEventListener("mouseup", dragEnd);
 
 function dragStart(e) {
-    initialX = e.clientX - xOffset;
-    initialY = e.clientY - yOffset;
-
-    if (e.target === dragHandle || e.target.classList.contains('music-title-bar')) {
-        isDraggingMusic = true;
-    }
+    if (e.target.id === 'music-toggle-btn')
+        return;
+    isDraggingMusic = true;
+    const rect = musicPlayer.getBoundingClientRect();
+    mouseOffsetX = e.clientX - rect.left;
+    mouseOffsetY = e.clientY - rect.top;
+    
+    musicPlayer.style.bottom = 'auto';
+    musicPlayer.style.right = 'auto';
+    musicPlayer.style.transition = 'none';
+    musicPlayer.style.left = rect.left + 'px';
+    musicPlayer.style.top = rect.top + 'px';
 }
 
 function drag(e) {
+    if (!isDraggingMusic)
+        return;
+    e.prevent.Default();
+    musicPlayer.style.left = (e.clientX - mouseOffsetX) + 'px';
+    musicPlayer.style.top = (e.clientY - mouseOffsetY) + 'px';
+}
+
+function dragEnd() {
     if (isDraggingMusic) {
-        e.preventDefault();
-        currentX = e.clientX - initialX;
-        currentY = e.clientY - initialY;
-        xOffset = currentX;
-        yOffset = currentY;
-        musicPlayer.style.transform = `translate3d(${currentX}px, ${currentY}px, 0)`;
+        isDraggingMusic = false;
+        musicPlayer.style.transition = 'width 0.3s ease, border-radius 0.3s ease';
     }
 }
-
-function dragEnd(e) {
-    isDraggingMusic = false;
-}
-
-loadTrack(currentTrackIndex);
