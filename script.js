@@ -536,3 +536,28 @@ function loadTrack(index) {
     document.getElementById('track-artist').innerText = track.artist;
     audio.load();
 }
+
+function togglePlay() {
+    if (audio.paused) {
+        audio.play();
+        playBtn.innerText = "⏸";
+    }
+    else {
+        audio.pause();
+        playBtn.innerText = "▶";
+    }
+}
+
+function nextTrack() {
+    currentTrackIndex = (currentTrackIndex + 1) %   playlist.length;
+    loadTrack(currentTrackIndex);
+    if (!audio.paused || playBtn.innerText === "⏸") audio.play();
+}
+function prevTrack() {
+    currentTrackIndex = (currentTrackIndex - 1 + playlist.length) % playlist.length;
+    loadTrack(currentTrackIndex);
+    if (!audio.paused || playBtn.innerText === "⏸")
+        audio.play();
+}
+
+audio.addEventListener('ended', nextTrack);
