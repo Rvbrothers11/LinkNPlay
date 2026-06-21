@@ -510,3 +510,29 @@ document.getElementById('guessInput').addEventListener('keypress', function (e) 
         sendGuess();
     }
 });
+
+
+
+
+const playlist = [
+    { title: "Chill Arcade Beat", artist: "Credit: Creator 1", src: "track1.mp3"},
+    { title: "Synthwave Nights", artist: "Credit: Creator 2", src: "track2.mp3"},
+    { title: "Lo-fi Gaming", artist: "Credit: Creator 3", src: "track3.mp3"}
+];
+
+let currentTrackIndex = 0;
+const audio = document.getElementById('bgMusic');
+const playBtn = document.getElementById('play-pause-btn');
+const progressBar = document.getElementById('progress-bar');
+const currentTimeEl = document.getElementById('current-time');
+const totalTimeEl = document.getElementById('total-time');
+
+audio.volume = 0.2;
+
+function loadTrack(index) {
+    const track = playlist[index];
+    audio.src = track.src;
+    document.getElementById('track-name').innerText = track.title;
+    document.getElementById('track-artist').innerText = track.artist;
+    audio.load();
+}
