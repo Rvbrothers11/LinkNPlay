@@ -580,3 +580,23 @@ audio.addEventListener('timeupdate', () => {
         totalTimeEl.innerText = `${durationMins}:${durationSecs}`;
     }
 });
+
+function seekAudio(e) {
+    const container = document.getElementById('progress-container');
+    const clickX = e.offsetX;
+    const width = container.clientWidth;
+    const duration = audio.duration;
+    audio.currentTime = (clickX / width) * duration;
+}
+
+function toggleMusicPlayer() {
+    const player = document.getElementById('floating-music-player');
+    const toggleBtn = document.getElementById('music-toggle-btn');
+    player.classList.toggle('music-collapsed');
+    if (player.classList.contains('music-collapsed')) {
+        toggleBtn.innerText = "+"
+    }
+    else {
+        toggleBtn.innerText = "-";
+    }
+}
