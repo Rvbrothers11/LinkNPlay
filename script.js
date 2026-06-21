@@ -600,3 +600,41 @@ function toggleMusicPlayer() {
         toggleBtn.innerText = "-";
     }
 }
+
+const dragHandle = document.getElementById('music-header');
+const musicPlayer = document.getElementById('floating-music-player');
+
+let isDraggingMusic = false;
+let currentX, currentY, initialX, initialY;
+let xOffset = 0;
+let yOffset = 0;
+
+dragHandle.addEventListener("mousedown", dragStart);
+document.addEventListener("mousemove", drag);
+document.addEventListener("mouseup", dragEnd);
+
+function dragStart(e) {
+    initialX = e.clientX - xOffset;
+    initialY = e.clientY - yOffset;
+
+    if (e.target === dragHandle || e.target.classList.contains('music-title-bar')) {
+        isDraggingMusic = true;
+    }
+}
+
+function drag(e) {
+    if (isDraggingMusic) {
+        e.preventDefault();
+        currentX = e.clientX - initialX;
+        currentY = e.clientY - initialY;
+        xOffset = currentX;
+        yOffset = currentY;
+        musicPlayer.style.transform = `translate3d(${currentX}px, ${currentY}px, 0)`;
+    }
+}
+
+function dragEnd(e) {
+    isDraggingMusic = false;
+}
+
+loadTrack(currentTrackIndex);
