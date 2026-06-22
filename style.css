@@ -772,3 +772,10 @@ input[tupe="text"]:focus {
     margin-bottom: 0;
     padding-bottom: 0;
 }
+
+.arena-actions {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    margin-top: 30px;
+}
