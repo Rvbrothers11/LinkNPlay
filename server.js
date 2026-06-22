@@ -28,7 +28,6 @@ io.on('connection', (socket) => {
 
             io.to(roomCode).emit('startGame', roomCode);
         }
-
         else {
             socket.emit('error', 'Room is full or does not exist.');
         }
