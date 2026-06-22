@@ -213,7 +213,7 @@ socket.on('backToMenu', () => {
     document.querySelector('.section-title').style.display = 'block';
 
     if (document.getElementById('chatLog')) {
-        addChatMessage("SYSTEM", "Returned to game menu.", true;);
+        addChatMessage("SYSTEM", "Returned to game menu.", true);
     }
 });
 
