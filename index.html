@@ -140,6 +140,25 @@
 
 
 
+        <section id="dotsboxes-arena" class="glass-panel" style="display: none;">
+            <div class="panel-header">
+                <h2>Dots & Boxes</h2>
+                <div class="db-scores">
+                    <span class="p1-score">P1 (Red): <span id="db-p1-score">0</span></span>
+                    <span class="p2-score">P2 (Blue): <span id=db-p2-score>0</span></span>
+                </div>
+                <p id="db-turnIndicator">Waiting for game to start...</p>
+            </div>
+            <div id="db-board" class="db-board"></div>
+
+            <div class="arena-actions">
+                <button class="btn btn-secondary" onclick="requestReturnToMenu()">Back To Dashboard</button>
+                <button class="btn btn-danger" onclick="disconnect()">Leave Match</button>
+            </div>
+        </section>
+
+
+
 
      
         <div class="section-title">
