@@ -85,7 +85,11 @@
                 <div class="cell" onclick="makeMove(7)" id="cell-7"></div>
                 <div class="cell" onclick="makeMove(8)" id="cell-8"></div>
             </div>
-            <button class="btn btn-danger" onclick="disconnect()">Leave Match</button>
+
+            <div class="arena-actions">
+                <button class="btn btn-secondary" onclick="requestReturnToMenu()">Back To Dashboard</button>
+                <button class="btn btn-danger" onclick="disconnect()">Leave Match</button>
+            </div>
         </section>
 
         <section id="skribbl-arena" class="glass-panel">
@@ -128,7 +132,10 @@
                     </div>
                 </div>
             </div>
-            <button class="btn btn-danger leave-match-btn" onclick="disconnect()">Leave Match</button>
+            <div class="arena-actions">
+                <button class="btn btn-secondary" onclick="requestReturnToMeny()">Back To Dashboard</button>
+                <button class="btn btn-danger leave-match-btn" onclick="disconnect()">Leave Match</button>
+            </div>
         </section>
 
 
