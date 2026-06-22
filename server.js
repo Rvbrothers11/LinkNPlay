@@ -36,6 +36,9 @@ io.on('connection', (socket) => {
     socket.on('triggerGame', (data) => {
         socket.to(data.room).emit('syncGameTransition', data.game);
     });
+    socket.on('returnToMenu', (roomCode) => {
+        io.to(roomCode).emit('backToMenu');
+    });
     socket.on('playMove', (data) => {
         socket.to(data.room).emit('updateBoard', data);
     });
