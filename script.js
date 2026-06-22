@@ -196,8 +196,26 @@ socket.on('syncGameTransition', (gameName) => {
     }
 });
 
+function requestReturnToMenu() {
+    socket.emit('returnToMenu', currentRoom);
+}
 
+socket.on('backToMenu', () => {
+    if (typeof skribblTimerInterval !== 'undefined') {
+        clearInterval(skribblTimerInterval);
+    }
 
+    document.getElementById('tictactoe-arena').style.display = 'none';
+    document.getElementById('skribbl-arena').style.display = 'none';
+
+    document.getElementById('active-game').style.display = 'block';
+    document.querySelector('.game-grid').style.display = 'grid';
+    document.querySelector('.section-title').style.display = 'block';
+
+    if (document.getElementById('chatLog')) {
+        addChatMessage("SYSTEM", "Returned to game menu.", true;);
+    }
+});
 
 function makeMove(index) {
     if (!isMyTurn || boardState[index] !== "") return;
