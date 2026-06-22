@@ -779,3 +779,27 @@ input[tupe="text"]:focus {
     justify-content: center;
     margin-top: 30px;
 }
+
+.db-scores {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    font-size: 1.2rem;
+    font-weight: 800;
+    margin-bottom: 10px;
+}
+
+.p1-score {
+    color: var(--danger);
+}
+.p2-score {
+    color: var(--primary);
+}
+
+.db-board {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 30px;
+    user-select: none;
+}
