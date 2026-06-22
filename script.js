@@ -631,7 +631,7 @@ function dragStart(e) {
 function drag(e) {
     if (!isDraggingMusic)
         return;
-    e.prevent.Default();
+    e.preventDefault();
     musicPlayer.style.left = (e.clientX - mouseOffsetX) + 'px';
     musicPlayer.style.top = (e.clientY - mouseOffsetY) + 'px';
 }
