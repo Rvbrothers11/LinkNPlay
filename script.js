@@ -582,7 +582,7 @@ audio.addEventListener('ended', nextTrack);
 
 audio.addEventListener('timeupdate', () => {
     if (audio.duration) {
-        const progressPercent = (audio.currentTime / audio.duration) * 180;
+        const progressPercent = (audio.currentTime / audio.duration) * 100;
         progressBar.style.width = `${progressPercent}%`;
 
         let currentMins = Math.floor(audio.currentTime / 60);
