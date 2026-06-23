@@ -665,3 +665,24 @@ function dragEnd() {
         musicPlayer.style.transition = 'width 0.3s ease, border-radius 0.3s ease';
     }
 }
+
+let dbCols = 3, dbRows = 3;
+let dbLines = {};
+let dbBoxOwners = {};
+let dbP1Score = 0, dbP2Score = 0;
+let isDbMyTurn = false;
+let dbMyPlayerNum = 0;
+
+function startDotsBoxes () {
+    dbLines = {};
+    dbBoxOwners = {};
+    dbP1Score = 0;
+    dbP2Score = 0;
+    document.getElementById('db-p1-score').innerText = "0";
+    document.getElementById('db-p2-score').innerText = "0";
+
+    dbMyPLayerNum = iAmHost ? 1 : 2;
+    isDbMyTurn = iAmHost;
+    updateDbTurnIndicator();
+    renderDbBoard();
+}
