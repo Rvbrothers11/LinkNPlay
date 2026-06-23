@@ -112,6 +112,10 @@ function animateHeroTransition(cardElement, gameName) {
             document.getElementById('chatLog').innerHTML = '<div class="chat-message system-msg">Welcome to Draw & Guess!</div>';
             startSkribblTurn();
         }
+        else if (gameName === 'dotsboxes') {
+            document.getElementById('dotsboxes-arena').style.display = 'block';
+            startDotsBoxes();
+        }
 
         clone.style.opacity = '0';
         setTimeout(() => clone.remove(), 600);
@@ -207,6 +211,7 @@ socket.on('backToMenu', () => {
 
     document.getElementById('tictactoe-arena').style.display = 'none';
     document.getElementById('skribbl-arena').style.display = 'none';
+    document.getElementById('dotsboxes-arena').style.display = 'none';
 
     document.getElementById('active-game').style.display = 'block';
     document.querySelector('.game-grid').style.display = 'grid';
