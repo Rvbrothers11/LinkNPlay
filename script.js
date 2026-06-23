@@ -683,6 +683,50 @@ function startDotsBoxes () {
 
     dbMyPLayerNum = iAmHost ? 1 : 2;
     isDbMyTurn = iAmHost;
-    updateDbTurnIndicator();
+    updateDbTurnIndicator();    
     renderDbBoard();
+}
+
+function renderDbBoard() {
+    const board = document.getElementById('db-board');
+    board.innerHTML = '';
+
+    for(let r = 0; r <= dbRows; r++) {
+        let dotRow = document.createElement('div');
+        dotRow.className = 'db-row';
+        for (let c = 0; c <= dbCols; c++) {
+            let dot = document.createElement('div');
+            dot.className = 'db-dot';
+            dotRow.appendChild(dot);
+
+            if (c < dbCols) {
+                let hLine = document.createElement('div');
+                hLine.className = 'db-hline db-line';
+                hLine.id = `h-${r}-${c}`;
+                hLine.onclick = () => playDbLine(hLine.id);
+                dotRow.appendChild(hLine);
+            }
+        }
+        board.appendChild(dotRow);
+
+        if (r < dbRows) {
+            let boxRow = document.createElement('div');
+            boxRow.className = 'db-vline-container';
+            for (let c = 0; c <=dbCols; c++) {
+                let vLine = document.createElement();
+                vLine.className = 'db-vline db-line';
+                vLine.id = `v-${r}-${c}`;
+                vLine.onclick = () => playDbLine(vLine.id);
+                boxRow.appendChild(vLine);
+
+                if (c < dbCols) {
+                    let box = document.createElement('div');
+                    box.className = 'db-box';
+                    box.id = `b-${r}-${c}`;
+                    boxRow.appendChild(box);
+                }
+            }
+            board.appendChild(boxRow);
+        }
+    }
 }
