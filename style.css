@@ -803,3 +803,52 @@ input[tupe="text"]:focus {
     margin: 30px;
     user-select: none;
 }
+
+.db-row, .db-vline-container {
+    display: flex;
+    align-items: center;
+}
+
+.db-dot {
+    width: 15px;
+    height: 15px;
+    background: white;
+    border-radius: 50%;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+    z-index: 2;
+}
+
+.db-hline {
+    width: 60px;
+    height: 15px;
+    background: rgba(255, 255, 255, 0.1);
+    cursor: pointer;
+    transition: 0.2s;
+    margin: 0 5px;
+    border-radius: 10px;
+}
+
+.db-vline {
+    width: 15px;
+    height: 60px;
+    background: rgba(255, 255, 255, 0.1);
+    cursor: pointer;
+    transition: 0.2s;
+    margin: 5px 0;
+    border-radius: 10px;
+}
+
+.db-hline:hover:not(.drawn), .db-vline:hover:not(.drawn) {
+    background: rgba(255, 255, 255, 0.4);
+}
+
+.db-box {
+    width: 60px;
+    height: 60px;
+    margin: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 8px;
+    transition: background 0.3s;
+}
