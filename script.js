@@ -533,9 +533,9 @@ document.getElementById('guessInput').addEventListener('keypress', function (e) 
 
 
 const playlist = [
-    { title: "Chill Arcade Beat", artist: "Credit: Creator 1", src: "track1.mp3"},
-    { title: "Synthwave Nights", artist: "Credit: Creator 2", src: "track2.mp3"},
-    { title: "Lo-fi Gaming", artist: "Credit: Creator 3", src: "track3.mp3"}
+    { title: "Memories Of Spring", artist: "Credit: Tokyo Music Walker", src: "track1.mp3"},
+    { title: "Hitman", artist: "Credit: Kevin MacLeod", src: "track2.mp3"},
+    { title: "I'll Be Your Sunshine", artist: "Credit: Luke Bergs", src: "track3.mp3"}
 ];
 
 let currentTrackIndex = 0;
