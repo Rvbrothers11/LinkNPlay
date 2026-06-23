@@ -42,6 +42,9 @@ io.on('connection', (socket) => {
     socket.on('playMove', (data) => {
         socket.to(data.room).emit('updateBoard', data);
     });
+    socket.on('dbMove', (data) => {
+        socket.to(data.room).emit('dbMove', data);
+    });
 
     
    
