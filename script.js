@@ -733,31 +733,46 @@ function renderDbBoard() {
 
 function playDbLine(lineId) {
     if (!isDbMyTurn || dbLines[lineId]) return;
+    isDbMyTurn = false;
+    updateDbTurnIndicator();
     socket.emit('dbMove', { room: currentRoom, lineId: lineId, player: dbMyPlayerNum });
     processDbMove(lineId, dbMyPlayerNum);
 }
 
 socket.on('dbMove', (data) => {
-    processDbMove(data.lineId, data.player);
+    processDbMove(data.lineId, parseInt(data.player, 10));
 });
 
 function processDbMove(lineId, playerNum) {
+    playerNum = parseInt(playerNum, 10);
     dbLines[lineId] = playerNum;
     const lineEl = document.getElementById(lineId);
-    lineEl.classList.add('drawn', playerNum === 1 ? 'p1' : 'p2');
-
+    if (lineEl) {
+        lineEl.classList.add('drawn', playerNum === 1 ? 'p1' : 'p2');
+    }
     let boxesCreated = checkForBoxes(lineId, playerNum);
 
     if (boxesCreated > 0) {
         if (playerNum === 1) dbP1Score += boxesCreated;
         else dbP2Score += boxesCreated;
 
-        document.getElementById('db-p1-score').innerText = dbP1Score;
-        document.getElementById('db-p2-score').innerText = dbP2Score;
+        const score1 = document.getElementById('db-p1-score').innerText = dbP1Score;
+        const score2 = document.getElementById('db-p2-score').innerText = dbP2Score;
+        if (score1) score1.innerText = dbP1Score;
+        if (score2) score2.innerText = dbP2Score;
+
+        if (playerNum === dbMyPlayerNum) {
+            isDbMyTurn = true;
+        }
         checkDbWin();
     }
     else {
-        isDbMyTurn = (playerNum !== dbMyPlayerNum);
+        if (playerNum === dbMyPlayerNum) {
+            isDbMyTurn = false;
+        }
+        else {
+            isDbMyTurn = true;
+        }
     }
     updateDbTurnIndicator();
 }
