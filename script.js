@@ -762,3 +762,43 @@ function processDbMove(lineId, playerNum) {
     updateDbTurnIndicator();
 }
 
+function fillBox(r, c, playerNum) {
+    dbBoxOwners[`b-${r}-${c}`] = playerNum;
+    let boxEl = document.getElementById(`b-${r}-${c}`);
+    boxEl.classList.add(playerNum === 1 ? 'p1' : 'p2');
+}
+
+function updateDbTurnIndicator() {
+    let totalBoxes = dbRows * dbCols;
+    if (Object.keys(dbBoxOwners).length === totalBoxes) return;
+
+    const status = document.getElementById('db-turnIndicator');
+    if (isDbMyTurn) {
+        status.innerText = "Your Turn! Draw a line.";
+        status.style.color = dbMyPlayerNum === 1 ? "var(--danger)" : "var(--primary)";
+    }
+    else {
+        status.innerText = "Opponent is thinking...";
+        status.style.color = "var(--text-muted)";
+    }
+}
+
+function checkDbWin() {
+    let totalBoxes = dbRows * dbCols;
+    if (Object.keys(dbBoxOwners).length === totalBoxes) {
+        const status = document.getElementById('db-turnIndicator');
+        if (dbP1Score > dbP2Score) {
+            status.innerText = dbMyPlayerNum === 1 ? "You Win!" : "You Lose!";
+            status.style.color = dbMyPlayerNum === 1 ? "var(--danger)" : "var(--text-muted)";
+        }
+        else if (dbP2Score > dbP1Score) {
+            status.innerText = dbMyPlayerNum === 2 ? "You Win!" : "You Lose!"
+            status.style.color = dbMyPlayerNum === 2 ? "var(--primary)" : "var(--text-muted)" 
+        }
+        else {
+            status.innerText = "It's a Tie!";
+            status.style.color = "white";
+        }
+        isDbMyTurn = false;
+    }
+}
