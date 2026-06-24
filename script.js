@@ -750,16 +750,17 @@ function processDbMove(lineId, playerNum) {
     if (lineEl) {
         lineEl.classList.add('drawn', playerNum === 1 ? 'p1' : 'p2');
     }
+
     let boxesCreated = checkForBoxes(lineId, playerNum);
 
     if (boxesCreated > 0) {
         if (playerNum === 1) dbP1Score += boxesCreated;
         else dbP2Score += boxesCreated;
 
-        const score1 = document.getElementById('db-p1-score').innerText = dbP1Score;
-        const score2 = document.getElementById('db-p2-score').innerText = dbP2Score;
-        if (score1) score1.innerText = dbP1Score;
-        if (score2) score2.innerText = dbP2Score;
+        const score1El = document.getElementById('db-p1-score');
+        const score2El = document.getElementById('db-p2-score');
+        if (score1El) score1El.innerText = dbP1Score;
+        if (score2El) score2El.innerText = dbP2Score;
 
         if (playerNum === dbMyPlayerNum) {
             isDbMyTurn = true;
@@ -775,6 +776,31 @@ function processDbMove(lineId, playerNum) {
         }
     }
     updateDbTurnIndicator();
+}
+
+function checkForBoxes(lineId, playerNum) {
+    let parts = lineId.split('-');
+    let type = parts[0];
+    let r = parseInt(parts[1], 10);
+    let c = parseInt(parts[2], 10);
+    let boxesMade = 0;
+
+    if (type === 'h') {
+        if (r > 0 && dbLines[`h-${r-1}-${c}`] && dbLines[`v-${r-1}-${c}`] && dbLines[`v-${r-1}-${c+1}`]) {
+            fillBox(r-1, c, playerNum); boxesMade++;
+        }
+        if (r < dbRows && dbLines[`h-${r+1}-${c}`] && dbLines[`v-${r}-${c}`] && dbLines[`v-${r}-${c+1}`]) {
+            fillBox(r, c, playerNum); boxesMade++;
+        }
+    } else if (type === 'v') {
+        if (c > 0 && dbLines[`v-${r}-${c-1}`] && dbLines[`h-${r}-${c-1}`] && dbLines[`h-${r+1}-${c-1}`]) {
+            fillBox(r, c-1, playerNum); boxesMade++;
+        }
+        if (c < dbCols && dbLines[`v-${r}-${c+1}`] && dbLines[`h-${r}-${c}`] && dbLines[`h-${r+1}-${c}`]) {
+            fillBox(r, c, playerNum); boxesMade++;
+        }
+    }
+    return boxesMade;
 }
 
 function fillBox(r, c, playerNum) {
@@ -807,8 +833,8 @@ function checkDbWin() {
             status.style.color = dbMyPlayerNum === 1 ? "var(--danger)" : "var(--text-muted)";
         }
         else if (dbP2Score > dbP1Score) {
-            status.innerText = dbMyPlayerNum === 2 ? "You Win!" : "You Lose!"
-            status.style.color = dbMyPlayerNum === 2 ? "var(--primary)" : "var(--text-muted)" 
+            status.innerText = dbMyPlayerNum === 2 ? "You Win!" : "You Lose!";
+            status.style.color = dbMyPlayerNum === 2 ? "var(--primary)" : "var(--text-muted)";
         }
         else {
             status.innerText = "It's a Tie!";
