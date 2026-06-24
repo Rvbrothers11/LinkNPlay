@@ -740,3 +740,25 @@ function playDbLine(lineId) {
 socket.on('dbMove', (data) => {
     processDbMove(data.lineId, data.player);
 });
+
+function processDbMove(lineId, playerNum) {
+    dbLines[lineId] = playerNum;
+    const lineEl = document.getElementById(lineId);
+    lineEl.classList.add('drawn', playerNum === 1 ? 'p1' : 'p2');
+
+    let boxesCreated = checkForBoxes(lineId, playerNum);
+
+    if (boxesCreated > 0) {
+        if (playerNum === 1) dbP1Score += boxesCreated;
+        else dbP2Score += boxesCreated;
+
+        document.getElementById('db-p1-score').innerText = dbP1Score;
+        document.getElementById('db-p2-score').innerText = dbP2Score;
+        checkDbWin();
+    }
+    else {
+        isDbMyTurn = (playerNum !== dbMyPlayerNum);
+    }
+    updateDbTurnIndicator();
+}
+
