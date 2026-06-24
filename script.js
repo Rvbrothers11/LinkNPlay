@@ -841,5 +841,9 @@ function checkDbWin() {
             status.style.color = "white";
         }
         isDbMyTurn = false;
+
+        setTimeout(() => {
+            startDotsBoxes();
+        }, 4000);
     }
 }
