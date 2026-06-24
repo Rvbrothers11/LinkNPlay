@@ -196,7 +196,11 @@
         <div id="music-header" class="music-drag-handle">
             <span id="music-toggle-btn" onclick="toggleMusicPlayer()" title="Minimize/Maximize">-</span>
             <span class="music-title-bar">Music Player</span>
-            <span style="width: 15px;"></span>
+            <span style="display: flex; align-items: center; gap: 8px;">
+                <span id="music-upload-btn" onclick="document.getElementById('music-upload-input').click()" title="Add Local Songs (.mp3)">+</span>
+                <input type="file" id="music-upload-input" accept="audio/*" multiple style="display: none;">
+                <span style="width: 5px;"></span>
+            </span>
         </div>
 
         <div id="music-content">

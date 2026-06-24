@@ -842,7 +842,7 @@ function checkDbWin() {
         }
         isDbMyTurn = false;
 
-        setTimeout(() => {
+        setTimeout(() => {  
             startDotsBoxes();
         }, 4000);
     }
