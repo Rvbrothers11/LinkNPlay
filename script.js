@@ -681,7 +681,7 @@ function startDotsBoxes () {
     document.getElementById('db-p1-score').innerText = "0";
     document.getElementById('db-p2-score').innerText = "0";
 
-    dbMyPLayerNum = iAmHost ? 1 : 2;
+    dbMyPlayerNum = iAmHost ? 1 : 2;
     isDbMyTurn = iAmHost;
     updateDbTurnIndicator();    
     renderDbBoard();
@@ -713,7 +713,7 @@ function renderDbBoard() {
             let boxRow = document.createElement('div');
             boxRow.className = 'db-vline-container';
             for (let c = 0; c <=dbCols; c++) {
-                let vLine = document.createElement();
+                let vLine = document.createElement('div');
                 vLine.className = 'db-vline db-line';
                 vLine.id = `v-${r}-${c}`;
                 vLine.onclick = () => playDbLine(vLine.id);
@@ -730,3 +730,13 @@ function renderDbBoard() {
         }
     }
 }
+
+function playDbLine(lineId) {
+    if (!isDbMyTurn || dbLines[lineId]) return;
+    socket.emit('dbMove', { room: currentRoom, lineId: lineId, player: dbMyPlayerNum });
+    processDbMove(lineId, dbMyPlayerNum);
+}
+
+socket.on('dbMove', (data) => {
+    processDbMove(data.lineId, data.player);
+});
