@@ -576,7 +576,7 @@ document.getElementById('music-upload-input').addEventListener('change', functio
     if (files.length === 0) return;
 
     for (let i = 0; i < files.length; i++) {
-        const file = filse[i];
+        const file = fisle[i];
         const fileURL = URL.createObjectURL(file);
         const title = file.name.replace(/\.[^/.]+$/, "");
         playlist.push({
