@@ -197,7 +197,12 @@
             <span id="music-toggle-btn" onclick="toggleMusicPlayer()" title="Minimize/Maximize">-</span>
             <span class="music-title-bar">Music Player</span>
             <span style="display: flex; align-items: center; gap: 8px;">
-                <span id="music-delete-btn" onclick="deleteCurrentTrack()" title="Remove Current Song">🗑️</span>
+                <span id="music-delete-btn" onclick="deleteCurrentTrack()" title="Remove Current Song">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="3 6 5 6 21 6"></polyline>
+                        <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                    </svg>
+                </span>
                 <span id="music-upload-btn" onclick="document.getElementById('music-upload-input').click()" title="Add Local Songs (.mp3)">+</span>
                 <input type="file" id="music-upload-input" accept="audio/*" multiple style="display: none;">
                 <span style="width: 5px;"></span>
