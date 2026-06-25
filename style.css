@@ -872,6 +872,9 @@ input[tupe="text"]:focus {
 }
 
 #music-upload-btn, #music-delete-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     cursor: pointer;
     font-size: 1.1rem;
     color: var(--text-muted);
@@ -886,4 +889,15 @@ input[tupe="text"]:focus {
 #music-delete-btn:hover {
     color: var(--danger);
     transform: scale(1.2);
+}
+
+.hidden-input {
+    display: none;
+}
+
+.music-header-actions{
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding-right: 15px;
 }
