@@ -571,6 +571,32 @@ function togglePlay() {
     }
 }
 
+function deleteCurrentTrack() {
+    if (playlist.length === 0) return;
+    playlist.splice(currentTrackIndex, 1);
+    if (playlist.length === 0) {
+        audio.pause();
+        audio.src = "";
+        document.getElementById('track-name').innerText = "No songs loaded";
+        document.getElementById('track-artist').innerText = "";
+        document.getElementById('current-time').innerText = "0:00";
+        document.getElementById('total-time').innerText = "0:00";
+        progressBar.style.width = "0%";
+        playBtn.innerText = "▶"
+    }
+    else {
+        if (currentTrackIndex >= playlist.length) {
+            currentTrackIndex = 0;
+        }
+        let wasPlaying = !audio.paused;
+        loadTrack(currentTrackIndex);
+
+        if (wasPLaying || playBtn.innerText === "⏸") {
+            audio.play();
+        }
+    }
+}
+
 document.getElementById('music-upload-input').addEventListener('change', function(e) {
     const files = e.target.files;
     if (files.length === 0) return;
