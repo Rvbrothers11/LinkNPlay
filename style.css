@@ -901,3 +901,29 @@ input[tupe="text"]:focus {
     gap: 14px;
     padding-right: 15px;
 }
+
+.room-code-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+}
+
+#copy-btn{
+    cursor: pointer;
+    color: var(--text-muted);
+    transition: color 0.2s, transform 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 5px;
+}
+
+#copy-btn:hover {
+    color: var(--primary);
+    transform: scale(1.15);
+}
+
+#copy-btn.copied {
+    color: #2ecc71;
+}
