@@ -871,7 +871,7 @@ input[tupe="text"]:focus {
     background: rgba(14, 165, 233, 0.3);
 }
 
-#music-upload-btn {
+#music-upload-btn, #music-delete-btn {
     cursor: pointer;
     font-size: 1.1rem;
     color: var(--text-muted);
@@ -880,5 +880,10 @@ input[tupe="text"]:focus {
 
 #music-upload-btn:hover {
     color: var(--primary);
+    transform: scale(1.2);
+}
+
+#music-delete-btn:hover {
+    color: var(--danger);
     transform: scale(1.2);
 }
