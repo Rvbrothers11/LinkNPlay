@@ -58,7 +58,16 @@
 
         <section id="active-game" class="glass-panel" style="display: none;">
             <div class="room-status">
-                <h2>Room Code: <span id="displayRoomCode" class="neon-text">----</span></h2>
+                <div class="room-code-container">
+                    <h2>Room Code: <span id="displayRoomCode" class="neon-text">----</span></h2>
+                    <span id="copy-btn" onclick="copyRoomCode()" title="Copy Room Code">
+                        <svg id="copy-svg-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"stroke-linejoin="round">
+                            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                        </svg>                    
+                    </span>
+                </div>
+                
                 <p>Waiting for opponent to connect...</p>
                 <button class="btn btn-danger" onclick="disconnect()">Cancel & Disconnect</button>
             </div>
