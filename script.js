@@ -571,6 +571,28 @@ function togglePlay() {
     }
 }
 
+document.getElementById('music-upload-input').addEventListener('change', function(e) {
+    const files = e.target.files;
+    if (files.length === 0) return;
+
+    for (let i = 0; i < files.length; i++) {
+        const file = filse[i];
+        const fileURL = URL.createObjectURL(file);
+        const title = file.name.replace(/\.[^/.]+$/, "");
+        playlist.push({
+            title: title,
+            artist: "Local File",
+            src: fileURL
+        });
+    }
+
+    currentTrackIndex = playlist.length - files.length;
+    loadTrack(currentTrackIndex);
+    audio.play();
+    playBtn.innerText = "⏸";
+    e.target.value = "";
+});
+
 function nextTrack() {
     currentTrackIndex = (currentTrackIndex + 1) %   playlist.length;
     loadTrack(currentTrackIndex);
