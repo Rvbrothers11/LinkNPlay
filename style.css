@@ -870,3 +870,15 @@ input[tupe="text"]:focus {
 .db-box.p2 {
     background: rgba(14, 165, 233, 0.3);
 }
+
+#music-upload-btn {
+    cursor: pointer;
+    font-size: 1.1rem;
+    color: var(--text-muted);
+    transition: color 0.2s, transform 0.2s;
+}
+
+#music-upload-btn:hover {
+    color: var(--primary);
+    transform: scale(1.2);
+}
