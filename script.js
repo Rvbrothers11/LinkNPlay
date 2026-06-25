@@ -844,6 +844,6 @@ function checkDbWin() {
 
         setTimeout(() => {  
             startDotsBoxes();
-        }, 4000);
+        }, 5000);
     }
 }
