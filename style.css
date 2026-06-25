@@ -895,7 +895,7 @@ input[tupe="text"]:focus {
     display: none;
 }
 
-.music-header-actions{
+.music-header-actions {
     display: flex;
     align-items: center;
     gap: 14px;
