@@ -1015,3 +1015,34 @@ input[tupe="text"]:focus {
         filter: blur(120px);
     }
 }
+
+.sb-board {
+    display: grid;
+    grid-template-columns: repeat(10, 30px);
+    grid-template-rows: repeat(10, 30px);
+    gap: 2px;
+    background: rgba(0, 0, 0, 0.4);
+    padding: 8px;
+    border-radius: 12px;
+    border: 2px solid rgba(14, 165, 233, 0.3);
+    box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.5);
+}
+
+.disabled-board {
+    pointer-events: none;
+    opacity: 0.5;
+    transition: opacity 0.3s;
+}
+
+.sb-cell {
+    width: 30px;
+    height: 30px;
+    background: rgba(14, 165, 233, 0.15);
+    border-radius: 4px;
+    cursor: crosshair;
+    transition: 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+}
