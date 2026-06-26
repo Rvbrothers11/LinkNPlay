@@ -989,3 +989,29 @@ input[tupe="text"]:focus {
     opacity: 0 !important;
     visibility: hidden !important;  
 }
+
+.startup-blob-1 {
+    animation: blobExplosion 2s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+
+.startup-blob-2 {
+    animation: blobExplosion 2.5s cubic-bezier(0.25, 1, 0.5, 1) 0.3s forwards;
+}
+
+@keyframes blobExplosion {
+    0% {
+        transform: scale(0);
+        opacity: 0;
+        filter: blur(40px);
+    }
+    40% {
+        transform: scale(1.4);
+        opacity: 0.8;
+        filter: blur(80px);
+    }
+    100% {
+        transform: scale(1);
+        opacity: 0.3;
+        filter: blur(120px);
+    }
+}
