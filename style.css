@@ -1046,3 +1046,35 @@ input[tupe="text"]:focus {
     justify-content: center;
     font-size: 1.2rem;
 }
+
+.sb-cell:hover:not(.hit):not(.miss) {
+    background: rgba(14, 165, 233, 0.6);
+}
+
+.sb-cell.ship {
+    background: var(--text-muted);
+    box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.8);
+}
+
+.sb-cell.hit {
+    background: rgba(239, 68, 68, 0.3);
+    color: var(--danger);
+    text-shadow: 0 0 8px var(--danger);
+    cursor: default;
+}
+
+.sb-cell.hit::after {
+    content: '💥';
+}
+
+.sb-cell.miss {
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    cursor: default;
+}
+    
+.sb-cell.miss::after {
+    content: '⚪';
+    font-size: 0.6rem;
+}
+
