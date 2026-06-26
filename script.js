@@ -41,6 +41,8 @@ if (introScreen) {
             introSound.volume = 0.6;
             introSound.play().catch(err => console.log("No audio file found or blocked:", err));
         }
+        document.querySelector('.blob-1').classList.add('startup-blob-1');
+        document.querySelector('.blob-2').classList.add('startup-blob-2');
         introScreen.classList.add('intro-hidden');
 
         if (audio && audio.paused) {
