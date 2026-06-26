@@ -32,6 +32,23 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("playerName").innerText = username;
 });
 
+const introScreen = document.getElementById('intro-screen');
+if (introScreen) {
+    introScreen.addEventListener('click', function() {
+        const introSound = document.getElementById('introSound');
+
+        if (introSound) {
+            introSound.volume = 0.6;
+            introSound.play().catch(err => console.log("No audio file found or blocked:", err));
+        }
+        introScreen.classList.add('intro-hidden');
+
+        if (audio && audio.paused) {
+            togglePlay();
+        }
+    });
+}
+
 function editUsername() {
     let currentName = localStorage.getItem("linkNPlayUser") || "Player One";
     let newName = prompt("Enter your new gamer tag:", currentName);
