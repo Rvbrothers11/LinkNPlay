@@ -135,6 +135,10 @@ function animateHeroTransition(cardElement, gameName) {
             document.getElementById('dotsboxes-arena').style.display = 'block';
             startDotsBoxes();
         }
+        else if (gameName === 'seabattle') {
+            document.getElementById('seabattle-arena').style.display = 'block';
+            startSeaBattle();
+        }
 
         clone.style.opacity = '0';
         setTimeout(() => clone.remove(), 600);
