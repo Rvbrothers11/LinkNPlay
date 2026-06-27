@@ -1055,3 +1055,27 @@ socket.on('sbOpponentReady', () => {
     sbOpponentReady = true;
     sbCheckBattleStart();
 });
+
+function sbCheckBattleStart() {
+    if (sbMeReady && sbOpponentReady) {
+        sbPhase = 'battle';
+        sbIsMyTurn = iAmHost;
+        updateSbTurnUI();
+    }
+}
+
+function updateSbTurnUI() {
+    const status = document.getElementById('sb-status');
+    const enemyBoard = document.getElementById('sb-enemy-board');
+    if (sbIsMyTurn) {
+        status.innerText = "COMMANDER, FIRE WHEN READY!";
+        status.style.color = "var(--danger)";
+        enemyBoard.classList.remove('disabled-board');
+    }
+    else {
+        status.innerText = "BRACE FOR IMPACT! Enemy is aiming...";
+        status.style.color = "var(--primary)";
+        enemyBoard.classList.add('disabled-board');
+    }
+}
+
