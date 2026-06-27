@@ -943,3 +943,35 @@ function copyRoomCode() {
         alert("Failed to copy code. Please highlight and copy manually.");
     });
 }
+
+let sbMyGrid = [];
+let sbEnemyGrid = [];
+let sbPhase = 'placement';
+let sbIsMyTurn = false;
+let sbMeReady = false;
+let sbOpponentReady = false;
+let sbMyHitsTaken = 0;
+let sbEnemyHitsTaken = 0;
+const SB_TOTAL_SHIP_CELLS = 17;
+
+function startSeaBattle() {
+    sbPhase = 'placement';
+    sbMeReady = false;
+    sbOpponentReady = false;
+    sbMyHitsTaken = 0;
+    sbEnemyHitsTaken = 0;
+
+    document.getElementById('sb-my-health').style.width = '100%';
+    document.getElementById('sb-enemy-health').style.width = '100%';
+
+    sbMyGrid = Array.from({ length: 10 }, () => Array(10).fill(0));
+    sbEnemyGrid = Array.from({ length: 10 }, () => Array(10).fill(0));
+
+    document.getElementById('sb-status').innerText = "Position your fleet!";
+    document.getElementById('sb-status').style.color = "var(--primary)";
+    document.getElementById('sb-controls').style.display = "flex";
+    document.getElementById('sb-enemy-board').classList.add('disabled-board');
+
+    renderSbBoards();
+    sbRandomizeShips();
+}
