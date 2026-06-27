@@ -1079,3 +1079,44 @@ function updateSbTurnUI() {
     }
 }
 
+function sbFireShot(r, c) {
+    if (!sbIsMyTurn || sbPhase !== 'battle' || sbEnemyGrid[r][c] !== 0) return;
+    sbIsMyTurn = false;
+    document.getElementById('sb-enemy-board').classList.add('disabled-board');
+    document.getElementById('sb-status').innerText = "Missile incoming...";
+    socket.emit('sbShoot', { room: currentRoom, r: r, c: c });
+}
+
+socket.on('sbReceiveShot', (data) => {
+    const { r, c } = data;
+    let result = 'miss';
+    let isGameOver = false;
+
+    if (sbMyGrid[r][c] === 1) {
+        result = 'hit';
+        sbMyGrid[r][c] = 2;
+        sbMyHitsTaken++;
+        document.getElementById(`sb-my-${r}-${c}`).classList.add('hit');
+        const myHealthPercent = ((SB_TOTAL_SHIP_CELLS - sbMyHitsTaken) / SB_TOTAL_SHIP_CELLS) * 100;
+        document.getElementById('sb-my-health').style.width = `${myHealthPercent}%`;
+        if (sbMyHitsTaken >=SB_TOTAL_SHIP_CELLS) isGameOver = true;
+    }
+    else {
+        sbMyGrid[r][c] = -1;
+        document.getElementByid(`sb-my-${r}-${c}`).classList.add('miss');
+    }
+
+    socket.emit('sbShotResult', { room: currentRoom, r: r, c: c, result: result, isGameOver: isGameOver });
+    if (isGameOver) {
+        sbEndGame(false);
+    }
+    else {
+        if (result === 'hit') {
+            sbIsMyTurn = false;
+        }
+        else {
+            sbIsMyTurn = true;
+        }
+        updateSbTurnUI();
+    }
+});
