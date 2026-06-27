@@ -47,6 +47,15 @@ io.on('connection', (socket) => {
     });
 
     
+    socket.on('sbReady', (data) => {
+        socket.to(data.room).emit('sbOpponentReady');
+    });
+    socket.on('sbShoot', (data) => {
+        socket.to(data.room).emit('sbReceiveShot', data);
+    });
+    socket.on('sbShotResult', (data) => {
+        socket.to(data.room).emit('sbShotResult', data);
+    })
    
     
     socket.on('startStroke', (data) => {
