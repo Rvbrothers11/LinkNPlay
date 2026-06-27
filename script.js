@@ -193,6 +193,7 @@ function resetToLobby(message) {
     document.getElementById('active-game').style.display = 'none';
     document.getElementById('tictactoe-arena').style.display = 'none';
     document.getElementById('skribbl-arena').style.display = 'none';
+    document.getElementById('seabattle-arena').style.display = 'none';
     document.getElementById('lobby').style.display = 'block';
     document.querySelector('.game-grid').style.display = 'grid';
     document.querySelector('.section-title').style.display = 'block';
@@ -235,6 +236,7 @@ socket.on('backToMenu', () => {
     document.getElementById('tictactoe-arena').style.display = 'none';
     document.getElementById('skribbl-arena').style.display = 'none';
     document.getElementById('dotsboxes-arena').style.display = 'none';
+    document.getElementById('seabattle-arena').style.display = 'none';
 
     document.getElementById('active-game').style.display = 'block';
     document.querySelector('.game-grid').style.display = 'grid';
