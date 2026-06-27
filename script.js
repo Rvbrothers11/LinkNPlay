@@ -1020,3 +1020,38 @@ function sbRandomizeShips() {
     });
     sbDrawMyShips();
 }
+
+function sbCanPlaceShip(r, c, size, dir) {
+    if (dir === 1 && c + size > 10) return false;
+    if (dir === 0 && r + size > 10) return false;
+
+    for (let i = 0; i < size; i++) {
+        if (dir === 1 && sbMyGrid[r][c + 1] !== 0) return false;
+        if (dir === 0 && sbMyGrid[r + 1][c] !== 0) return false;
+    }
+    return true;
+}
+
+function sbDrawMyShips() {
+    for (let r = 0; r < 10; r++) {
+        for (let c = 0; c < 10; c++) {
+            let cell = document.getElementById(`sb-my-${r}-${c}`);
+            if (sbMyGrid[r][c] === 1) cell.classList.add('ship');
+            else cell.classList.remove('ship');
+        }
+    }
+}
+
+function sbReadyUp() {
+    sbMeReady = true;
+    document.getElementById('sb-controls').style.display = "none";
+    document.getElementById('sb-status').innerText = "Waiting for opponent to secure their fleet...";
+    document.getElementById('sb-status').style.color = "var(--text-muted)";
+    socket.emit('sbReady', { room: currentRoom });
+    sbCheckBattleStart();
+}
+
+socket.on('sbOpponentReady', () => {
+    sbOpponentReady = true;
+    sbCheckBattleStart();
+});
