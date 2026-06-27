@@ -997,3 +997,26 @@ function renderSbBoards() {
     }
 }
 
+function sbRandomizeShips() {
+    if (sbMeReady) return;
+    sbMyGrid = Array.from({ length: 10 }, () => Array(10).fill(0));
+    const ships = [5, 4, 3, 3, 2];
+
+    ships.forEach(size => {
+        let placed = false;
+        while (!placed) {
+            let dir = Math.random() > 0.5 ? 1 : 0;
+            let r = Math.floor(Math.random() * 10);
+            let c = Math.floor(Math.random() * 10);
+
+            if (sbCanPlaceShip(r, c, size, dir)) {
+                for (let i = 0; i < size; i++) {
+                    if (dir === 1) sbMyGrid[r][c + i] = 1;
+                    else sbMyGrid[r + i][c] = 1;
+                }
+                placed = true;
+            }
+        }
+    });
+    sbDrawMyShips();
+}
