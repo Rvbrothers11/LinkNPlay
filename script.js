@@ -975,3 +975,25 @@ function startSeaBattle() {
     renderSbBoards();
     sbRandomizeShips();
 }
+
+function renderSbBoards() {
+    const myBoard = document.getElementById('sb-my-board');
+    const enemyBoard = document.getElementById('sb-enemy-board');
+    myBoard.innerHTML = '';
+    enemyBoard.innerHTML = '';
+
+    for (let r = 0; r < 10; r++) {
+        for (let c = 0; c < 10; c++) {
+            let myCell = document.createElement('div');
+            myCell.className = 'sb-cell';
+            myCell.id = `sb-my-${r}-${c}`;
+            myBoard.appendChild(myCell);
+            let enemyCell = document.createElement('div');
+            enemyCell.className = 'sb-cell';
+            enemyCell.id = `sb-en-${r}-${c}`;
+            enemyCell.onclick = () => sbFireShot(r, c);
+            enemyBoard.appendChild(enemyCell);
+        }
+    }
+}
+
