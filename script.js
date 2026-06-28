@@ -139,6 +139,10 @@ function animateHeroTransition(cardElement, gameName) {
             document.getElementById('seabattle-arena').style.display = 'block';
             startSeaBattle();
         }
+        else if (gameName === 'connect4') {
+            document.getElementById('connect4-arena').style.display = 'block';
+            startConnect();
+        }
 
         clone.style.opacity = '0';
         setTimeout(() => clone.remove(), 600);
