@@ -46,6 +46,11 @@ io.on('connection', (socket) => {
         socket.to(data.room).emit('dbMove', data);
     });
 
+
+    socket.on('c4Move', (data) => {
+        socket.to(data.room).emit('c4ReceiveMove', data);
+    });
+
     
     socket.on('sbReady', (data) => {
         socket.to(data.room).emit('sbOpponentReady');
@@ -55,7 +60,7 @@ io.on('connection', (socket) => {
     });
     socket.on('sbShotResult', (data) => {
         socket.to(data.room).emit('sbShotResult', data);
-    })
+    });
    
     
     socket.on('startStroke', (data) => {
