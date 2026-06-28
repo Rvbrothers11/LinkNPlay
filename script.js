@@ -1120,3 +1120,33 @@ socket.on('sbReceiveShot', (data) => {
         updateSbTurnUI();
     }
 });
+
+socket.on('sbShotResult', (data) => {
+    const { r, c, result, isGameOver } = data;
+    const cell= document.getElementById(`sb-en-${r}-${c}`);
+    
+    if (result === 'hit') {
+        sbEnemyGrid[r][c] = 2;
+        cell.classList.add('hit');
+        sbEnemyHitsTaken++;
+        const enemyHealthPercent = ((SB_TOTAL_SHIP_CELLS - sbEnemyHitsTaken) / SB_TOTAL_SHIP_CELLS) * 100;
+        document.getElementById('sb-enemy-health').style.width = `${enemyHealthPercent}%`;
+    }
+    else {
+        sbEnemyGrid[r][c] = -1;
+        cell.classList.add('miss');
+    }
+
+    if (isGameOver) {
+        sbEndGame(true);
+    }
+    else {
+        if (result === 'hit') {
+            sbIsMyTurn = true;
+        }
+        else {
+            sbIsMyTurn = false;
+        }
+        updateSbTurnUI();
+    }
+});
