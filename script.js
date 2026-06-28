@@ -1187,3 +1187,36 @@ function sbEndGame(didIWin) {
         }
     }, 5000);
 }
+
+const C4_ROWS = 6;
+const C4_COLS = 7;
+let c4Board = [];
+let c4MySymbol = "";
+let c4IsMyTurn = false;
+let c4GameActive = false;
+
+function startConnect4() {
+    c4Board = Array.from({length: C4_COLS}, () => []);
+    c4MySymbol = iAmHost ? "R" : "Y";
+    c4IsMyTurn = iAmHost;
+    c4GameActive = true;
+
+    const boardEl = document.getElementById('c4-board');
+    boardEl.innerHTML = '';
+
+    for (let c = 0; c < C4_COLS; c++) {
+        let colEl = document.createElement('div');
+        colEl.className = 'c4-col';
+        colEl.id = `c4-col-${c}`;
+        colEl.onclick = () => playC4Move(c);
+
+        for (let r = 0; r < C4_ROWS; r++) {
+            let cell = document.createElement('div');
+            cell.className = 'c4-cell';
+            cell.id = `c4-${r}-${c}`;
+            colEl.appendChild(cell);
+        }
+        boardEl.appendChild(colEl);
+    }
+    updateC4TurnIndicator();
+}
