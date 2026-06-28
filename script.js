@@ -1150,3 +1150,24 @@ socket.on('sbShotResult', (data) => {
         updateSbTurnUI();
     }
 });
+
+function sbEndGame(didIWin) {
+    sbPhase = 'gameover';
+    const status = document.getElementById('sb-status');
+    document.getElementById('sb-enemy-board').classList.add('disabled-board');
+
+    if (didIWin) {
+        status.innerText = "ENEMY FLEET DESTROYED. YOU WIN!";
+        status.style.color = "#fbbf24";
+    }
+    else {
+        status.innerText = "YOUR FLEET WAS SUNK. YOU LOSE!";
+        status.style.color = "var(--danger)";
+    }
+
+    setTimeout(() => {
+        if(document.getElementById('seabattle-arena').style.display === 'block') {
+            startSeaBattle();
+        }
+    }, 5000);
+}
