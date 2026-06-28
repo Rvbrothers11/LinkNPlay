@@ -1003,21 +1003,25 @@ function sbRandomizeShips() {
     const ships = [5, 4, 3, 3, 2];
 
     ships.forEach(size => {
-        let placed = false;
-        while (!placed) {
-            let dir = Math.random() > 0.5 ? 1 : 0;
-            let r = Math.floor(Math.random() * 10);
-            let c = Math.floor(Math.random() * 10);
+    let placed = false;
+    let attempts = 0;
+    while (!placed && attempts < 5000) {
+        attempts++;
+        let dir = Math.random() > 0.5 ? 1 : 0;
+        let r = Math.floor(Math.random() * 10);
+        let c = Math.floor(Math.random() * 10);
 
-            if (sbCanPlaceShip(r, c, size, dir)) {
-                for (let i = 0; i < size; i++) {
-                    if (dir === 1) sbMyGrid[r][c + i] = 1;
-                    else sbMyGrid[r + i][c] = 1;
-                }
-                placed = true;
+        if (sbCanPlaceShip(r, c, size, dir)) {
+            for (let i = 0; i < size; i++) {
+                if (dir === 1)
+                    sbMyGrid[r][c + i] = 1;
+                else
+                    sbMyGrid[r + i][c] = 1;
             }
+            placed = true;
         }
-    });
+    }
+});
     sbDrawMyShips();
 }
 
@@ -1026,8 +1030,8 @@ function sbCanPlaceShip(r, c, size, dir) {
     if (dir === 0 && r + size > 10) return false;
 
     for (let i = 0; i < size; i++) {
-        if (dir === 1 && sbMyGrid[r][c + 1] !== 0) return false;
-        if (dir === 0 && sbMyGrid[r + 1][c] !== 0) return false;
+        if (dir === 1 && sbMyGrid[r][c + i] !== 0) return false;
+        if (dir === 0 && sbMyGrid[r + i][c] !== 0) return false;
     }
     return true;
 }
@@ -1036,13 +1040,16 @@ function sbDrawMyShips() {
     for (let r = 0; r < 10; r++) {
         for (let c = 0; c < 10; c++) {
             let cell = document.getElementById(`sb-my-${r}-${c}`);
-            if (sbMyGrid[r][c] === 1) cell.classList.add('ship');
-            else cell.classList.remove('ship');
+            cell.classList.remove('ship', 'hit', 'miss');
+            if (sbMyGrid[r][c] === 1) {
+                cell.classList.add('ship');
+            }
         }
     }
 }
 
 function sbReadyUp() {
+    if (sbMeReady) return;
     sbMeReady = true;
     document.getElementById('sb-controls').style.display = "none";
     document.getElementById('sb-status').innerText = "Waiting for opponent to secure their fleet...";
@@ -1089,6 +1096,9 @@ function sbFireShot(r, c) {
 
 socket.on('sbReceiveShot', (data) => {
     const { r, c } = data;
+    if (sbMyGrid[r][c] === 2 || sbMyGrid[r][c] === -1) {
+        return;
+    }
     let result = 'miss';
     let isGameOver = false;
 
@@ -1103,7 +1113,7 @@ socket.on('sbReceiveShot', (data) => {
     }
     else {
         sbMyGrid[r][c] = -1;
-        document.getElementByid(`sb-my-${r}-${c}`).classList.add('miss');
+        document.getElementById(`sb-my-${r}-${c}`).classList.add('miss');
     }
 
     socket.emit('sbShotResult', { room: currentRoom, r: r, c: c, result: result, isGameOver: isGameOver });
