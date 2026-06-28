@@ -1220,3 +1220,48 @@ function startConnect4() {
     }
     updateC4TurnIndicator();
 }
+
+function playC4Move(col) {
+    if (!c4IsMyTurn || !c4GameActive || c4Board[col].length >= C4_ROWS) return;
+    c4IsMyTurn = false;
+    updateC4TurnIndicator();
+    socket.emit('c4Move', { room: currentRoom, col: col, symbol: c4MySymbol });
+    processC4Move(col, c4MySymbol);
+}
+
+socket.on('c4ReceiveMove', (data) => {
+    processC4Move(data.col, data.symbol);
+    c4IsMyTurn = true;
+    updateC4TurnIndicator();
+});
+
+function processC4Move(col, symbol) {
+    let rowIndex = (C4_ROWS - 1) - c4Board[col].length;
+    c4Board[col].push(symbol);
+    const cell = document.getElementById(`c4-${rowIndex}-${col}`);
+    cell.classList.add(symbol === 'R' ? 'c4-red' : 'c4-yellow');
+    checkC4Win();
+}
+
+function updateC4TurnIndicator() {
+    if (!c4GameActive) return;
+    const status = document.getElementById('c4-turnIndicator');
+    if (c4IsMyTurn) {
+        status.innerText = "Your Turn! Drop a chip.";
+        status.style.color = c4MySymbol === 'R' ? "var(--danger)" : "#fbbf24";
+    }
+    else {
+        status.innerText = "Opponent is thinking...";
+        status.style.color = "var(--text-muted)";
+    }
+}
+
+function checkC4Win() {
+    let grid = Array.from({length: C4_ROWS}, () => Array(C4_COLS).fill(null));
+    for(let c = 0; c < C4_COLS; c++){
+        for(let r = 0; r < c4Board[c].length; r++){
+            let gridRow = (C4_ROWS - 1) - r;
+            grid[gridRow][c] = c4Board[c][r];
+        }
+    }
+}
