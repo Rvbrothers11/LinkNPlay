@@ -219,6 +219,20 @@
         </section>
 
 
+        <section id="connect4-arena" class="glass-panel" style="display: none;">
+            <div class="panel-header">
+                <h2>Connect 4</h2>
+                <p id="c4-turnIndicator">Waiting for game to start...</p>
+            </div>
+
+            <div id="c4-board" class="c4-board"></div>
+            <div class="arena-actions">
+                <button class="btn btn-secondary" onclick="requestReturnToMenu()">Back To Dashboard</button>
+                <button class="btn btn-danger" onclick="disconnect()">Leave Match</button>
+            </div>
+        </section>
+
+
         <div class="section-title">
             <h2>Choose Your Arena</h2>
         </div>
@@ -250,6 +264,13 @@
                 <div class="icon">🔲🖊️</div>
                 <h3>Dots & Boxes</h3>
                 <p>Outsmart your opponent for territory.</p>
+            </div>
+
+            <div class="game-card" onclick="selectGame('connect4', event)">
+                <div class="card-glow"></div>
+                <div class="icon">🔴🟡</div>
+                <h3>Connect 4</h3>
+                <p>Drop chips and connect 4</p>
             </div>
         </section>
     </main>
