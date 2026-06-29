@@ -141,7 +141,7 @@ function animateHeroTransition(cardElement, gameName) {
         }
         else if (gameName === 'connect4') {
             document.getElementById('connect4-arena').style.display = 'block';
-            startConnect();
+            startConnect4();
         }
 
         clone.style.opacity = '0';
@@ -323,7 +323,7 @@ function resetBoard() {
     for (let i = 0; i < 9; i++) {
         const cell = document.getElementById(`cell-${i}`);
         cell.innerText = "";
-        cell.classList.remove("x-remove", "o-symbol");
+        cell.classList.remove("x-symbol", "o-symbol");
     }
 
     if (mySymbol === "X") {
@@ -622,7 +622,7 @@ function deleteCurrentTrack() {
         let wasPlaying = !audio.paused;
         loadTrack(currentTrackIndex);
 
-        if (wasPLaying || playBtn.innerText === "⏸") {
+        if (wasPlaying || playBtn.innerText === "⏸") {
             audio.play();
         }
     }
