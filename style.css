@@ -1169,3 +1169,68 @@ input[type="text"]:focus {
         opacity: 1;
     }
 }
+
+#leaderboard-panel {
+    position: fixed;
+    top: 0;
+    right: -350px;
+    width: 320px;
+    height: 100vh;
+    border-radius: 24px 0 0 24px;
+    border-right: none;
+    z-index: 100000;
+    transition: right 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+    display: flex;
+    flex-direction: column;
+    padding: 30px;
+}
+
+#leaderboard-panel.open {
+    right: 0;
+}
+
+.close-lb-btn {
+    position: absolute;
+    top: 25px;
+    right: 25px;
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: color 0.2s, transform 0.2s;
+}
+
+.close-lb-btn:hover {
+    color: var(--danger);
+    transform: scale(1.2);
+}
+
+.lb-stats {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 10px;
+}
+
+.lb-stat-box {
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 10px 20px;
+    border-radius: 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.lb-label {
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 0.9rem;
+}
+
+.lb-value {
+    font-size: 1.8rem;
+    font-weight: 800;
+}
