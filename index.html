@@ -34,7 +34,7 @@
                 <span id="playerName">Loading...</span>
                 <span class="edit-icon" onclick="editUsername()" title="Change Name">✏️</span>
             </div>
-            <span class="score-badge">🏆 <span id="playerScore">0</span></span>
+            <span class="score-badge" onclick="toggleLeaderboard()" style="cursor: pointer;" title="View Session Stats">🏆 <span id="playerScore">0</span></span>
         </div>
     </header>
 
@@ -274,6 +274,28 @@
             </div>
         </section>
     </main>
+
+    <div id="leaderboard-panel" class="glass-panel">
+        <div class="panel-header" style="margin-bottom: 20px; text-align: left;">
+            <button class="close-lb-btn" onclick="toggleLeaderboard()">X</button>
+            <h3 style="margin-bottom: 5px; font-size: 1.5rem;">Session Stats</h3>
+            <p id="lb-room-id" style="font-size: 0.9rem; color: var(--text-muted);">Not in a room.</p>     
+        </div>
+        <div class="lb-stats">
+            <div class="lb-stat-box">
+                <span class="lb-label" style="color: var(--primary);">Victories</span>
+                <span id="lb-wins" class="lb-value">0</span>
+            </div>
+            <div class="lb-stat-box">
+                <span class="lb-label" style="color: var(--danger);">Defeats</span>
+                <span id="lb-losses" class="lb-value">0</span>
+            </div>
+            <div class="lb-stat-box">
+                <span class="lb-label" style="color: white;">Ties</span>
+                <span id="lb-ties" class="lb-value">0</span>
+            </div>
+        </div>
+    </div>
 
     <div id="floating-music-player" class="glass-panel">
         <div id="music-header" class="music-drag-handle">
