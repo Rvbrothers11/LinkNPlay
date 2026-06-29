@@ -299,12 +299,13 @@ function checkWin(lastSymbol) {
         if (lastSymbol === mySymbol) {
             document.getElementById('turnIndicator').innerText = "YOU WIN!";
             document.getElementById('turnIndicator').style.color = "#fbbf24";
+            recordMatchResult('win');
         }
         else {
             document.getElementById('turnIndicator').innerText = "YOU LOSE!";
             document.getElementById('turnIndicator').style.color = "#ef4444";
+            recordMatchResult('lose');
         }
-
         isMyTurn = false;
         setTimeout(resetBoard, 3000);
         return;
@@ -313,6 +314,7 @@ function checkWin(lastSymbol) {
     if (!boardState.includes("")) {
         document.getElementById('turnIndicator').innerText = "IT'S A TIE!";
         document.getElementById('turnIndicator').style.color = "white";
+        recordMatchResult('tie');
         isMyTurn = false;
         setTimeout(resetBoard, 3000);
     }
@@ -522,13 +524,20 @@ function handleSkribblEnd(wasWon, winnerName, word, gPoints, dPoints) {
         if (winnerName === myName && !isDrawer) {
             document.getElementById("playerScore").innerText = myScore + gPoints;
             addChatMessage("SCORE", `You earned +${gPoints} points!`, true);
+            recordMatchResult('win');
         } else if (isDrawer) {
             document.getElementById("playerScore").innerText = myScore + dPoints;
             addChatMessage("SCORE", `You earned +${dPoints} points as the artist!`, true);
+            recordMatchResult('win');
         }
+        else {
+            recordMatchResult('lose');
+        }
+
     } else {
         addChatMessage("SYSTEM", `Time's up! The word was: ${word.toUpperCase()}`, true);
         document.getElementById('skribbl-status').innerText = `Time's up! The word was ${word.toUpperCase()}`;
+        recordMatchResult('lose');
     }
 
     isDrawer = false;
@@ -910,14 +919,17 @@ function checkDbWin() {
         if (dbP1Score > dbP2Score) {
             status.innerText = dbMyPlayerNum === 1 ? "You Win!" : "You Lose!";
             status.style.color = dbMyPlayerNum === 1 ? "var(--danger)" : "var(--text-muted)";
+            recordMatchResult(dbMyPlayerNum === 1 ? 'win' : 'lose');
         }
         else if (dbP2Score > dbP1Score) {
             status.innerText = dbMyPlayerNum === 2 ? "You Win!" : "You Lose!";
             status.style.color = dbMyPlayerNum === 2 ? "var(--primary)" : "var(--text-muted)";
+            recordMatchResult(dbMyPlayerNum === 2 ? 'win' : 'lose')
         }
         else {
             status.innerText = "It's a Tie!";
             status.style.color = "white";
+            recordMatchResult('tie');
         }
         isDbMyTurn = false;
 
@@ -1175,12 +1187,13 @@ function sbEndGame(didIWin) {
     if (didIWin) {
         status.innerText = "ENEMY FLEET DESTROYED. YOU WIN!";
         status.style.color = "#fbbf24";
+        recordMatchResult('win');
     }
     else {
         status.innerText = "YOUR FLEET WAS SUNK. YOU LOSE!";
         status.style.color = "var(--danger)";
+        recordMatchResult('lose');
     }
-
     setTimeout(() => {
         if(document.getElementById('seabattle-arena').style.display === 'block') {
             startSeaBattle();
@@ -1289,10 +1302,12 @@ function checkC4Win() {
         if (winner === c4MySymbol) {
             status.innerText = "CONNECT 4! YOU WIN!";
             status.style.color = "#fbbf24";
+            recordMatchResult('win');
         }
         else {
             status.innerText = "OPPONENT WINS!";
             status.style.color = "var(--danger)";
+            recordMatchResult('lose');
         }
         setTimeout(startConnect4, 4000);
     }
@@ -1300,6 +1315,7 @@ function checkC4Win() {
         c4GameActive = false;
         status.innerText = "BOARD FULL! IT'S A TIE!";
         status.style.color = "white";
+        recordMatchResult('tie');
         setTimeout(startConnect4, 4000);
     }
 }
