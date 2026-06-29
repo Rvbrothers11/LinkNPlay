@@ -1303,3 +1303,25 @@ function checkC4Win() {
         setTimeout(startConnect4, 4000);
     }
 }
+
+let sessionWins = 0;
+let sessionLosses = 0;
+let sessionTies = 0;
+
+function toggleLeaderboard() {
+    const lb = document.getElementById('leaderboard-panel');
+    lb.classList.toggle('open');
+    document.getElementById('lb-room-id').innerText = currentRoom ? `Battleground: ${currentRoom}` : 'Lobby (Not connected)';
+}
+
+function recordMatchResult(result) {
+    if (result === 'win') 
+        sessionWins++;
+    else if (result === 'lose') sessionLosses++;
+    else if (result === 'tie') sessionTies++;
+
+    document.getElementById('lb-wins').innerText = sessionWins;
+    document.getElementById('lb-losses').innerText = sessionLosses;
+    document.getElementById('lb-ties').innerText = sessionTies;
+
+}
