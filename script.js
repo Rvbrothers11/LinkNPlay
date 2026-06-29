@@ -1264,4 +1264,42 @@ function checkC4Win() {
             grid[gridRow][c] = c4Board[c][r];
         }
     }
+
+    let winner = null;
+    let isTie = true;
+
+    for(let r = 0; r < C4_ROWS; r++) {
+        for(let c = 0; c < C4_COLS; c++) {
+            let sym = grid[r][c];
+            if (!sym) {
+                isTie = false;
+                continue;
+            }
+            if(c + 3 < C4_COLS && sym === grid[r][c+1] && sym === grid[r][c+2] && sym === grid[r][c+3]) winner = sym;
+            if(r + 3 < C4_ROWS && sym === grid[r+1][c] && sym === grid[r+2][c] && sym === grid[r+3][c]) winner = sym;
+            if(r + 3 < C4_ROWS && c + 3 < C4_COLS && sym === grid[r+1][c+1] && sym === grid[r+2][c+2] && sym === grid[r+3][c+3]) winner = sym;
+            if(r + 3 < C4_ROWS && c - 3 >= 0 && sym === grid[r+1][c-1] && sym === grid[r+2][c-2] && sym === grid[r+3][c-3]) winner = sym;
+        }
+    }
+
+    const status = document.getElementById('c4-turnIndicator');
+
+    if (winner) {
+        c4GameActive = false;
+        if (winner === c4MySymbol) {
+            status.innerText = "CONNECT 4! YOU WIN!";
+            status.style.color = "#fbbf24";
+        }
+        else {
+            status.innerText = "OPPONENT WINS!";
+            status.style.color = "var(--danger)";
+        }
+        setTimeout(startConnect4, 4000);
+    }
+    else if (isTie) {
+        c4GameActive = false;
+        status.innerText = "BOARD FULL! IT'S A TIE!";
+        status.style.color = "white";
+        setTimeout(startConnect4, 4000);
+    }
 }
