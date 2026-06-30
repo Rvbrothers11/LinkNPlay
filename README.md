@@ -7,7 +7,7 @@
 
 A well articulated, five-in-one multiplayer dashboard built directly for your web browser. This project was built for #horizons! YAYYYYYY!
 
-**What my multiplayer hub does? **
+**What my multiplayer hub does?**
 This is a multi-tool dashboard designed for when the user wants to play against their friends in Tic Tac Toe, show off drawing skills in Skribbl, claim territory in Dots & Boxes, blast ships in Sea Battle, or drop chips in Connect 4, all while listening to custom music and tracking who is actually dominating the session.
 
 **It includes 8 features:**
@@ -26,6 +26,12 @@ This is a multi-tool dashboard designed for when the user wants to play against 
 **Custom Music Player:** Listen to today's top hits! Upload your own .mp3 files and control the volume while you play.
 
 **Session Leaderboard:** Want to know who is actually winning the game? Open this slide-out drawer to see your overall Wins, Losses, and Ties across all 5 games.
+
+**How to use?**
+Open the site on your browser, and the same on your friend's browser. 
+Click on generate code. Send it to your friend and tell them to paste it into the input code text part of the dashboard.
+Click connect from the friend's side and you guys are now in a room!
+Click on any game and start playing!
 
 **To use it locally:**
 Clone or download this repository to your computer.
