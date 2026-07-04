@@ -5,7 +5,8 @@
 <img width="1279" height="709" alt="image" src="https://github.com/user-attachments/assets/22e67575-d1c1-441d-9ce5-6539060e5189" />
 
 
-A well articulated, five-in-one multiplayer dashboard built directly for your web browser. This project was built for #horizons! YAYYYYYY!
+A five-in-one multiplayer dashboard built directly for your web browser. This project was built for #horizons! YAYYYYYY!
+**AI Decleration:** I used AI to help me find bugs which if i couldnt fix i got help from AI. 
 
 **What my multiplayer hub does?**
 This is a multi-tool dashboard designed for when the user wants to play against their friends in Tic Tac Toe, show off drawing skills in Skribbl, claim territory in Dots & Boxes, blast ships in Sea Battle, or drop chips in Connect 4, all while listening to custom music and tracking who is actually dominating the session.
